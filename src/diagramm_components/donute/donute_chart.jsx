@@ -43,25 +43,23 @@ const Donute_chart = () => {
       },
     ],
   });
-  const handleClick = (event, chartElements) => {
-    if (chartElements.length > 0) {
-      const index = chartElements[0]._index;
-      const value = data.datasets[0].data[index];
-      console.log(value);
-      console.log(data.labels[index]);
-      store();
-    }
-  };
+
+  const handleClick = (index) => {console.log(data.datasets[index])};
+  
   const options = {
-    onClick : handleClick
+    
+    onclick : console.log("clicked"),
+
+
   }
+  
 
   return (
     <div className="w-screen h-screen flex justify-center">
 
       
 
-      <Doughnut data={data} plugins={[textCenter]} height="100" width="100" options={options} />
+      <Doughnut data={data} plugins={[textCenter]} height="100" width="100" options={options}  />
 
     </div>
   );
