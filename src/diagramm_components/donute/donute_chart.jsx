@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
+import { store } from "../../db";
 
 const Donute_chart = () => {
   chartjs.register(ArcElement, Tooltip, Legend);
@@ -48,7 +49,7 @@ const Donute_chart = () => {
       const value = data.datasets[0].data[index];
       console.log(value);
       console.log(data.labels[index]);
-      
+      store();
     }
   };
   const options = {
