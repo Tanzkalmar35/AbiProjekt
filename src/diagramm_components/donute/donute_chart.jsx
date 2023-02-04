@@ -6,6 +6,7 @@ import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 const Donute_chart = () => {
   chartjs.register(ArcElement, Tooltip, Legend);
 
+<<<<<<< Updated upstream
   const [middle, setMiddle] = useState("he");
 
   const textCenter = {
@@ -25,6 +26,8 @@ const Donute_chart = () => {
     },
   };
 
+=======
+>>>>>>> Stashed changes
   const [data, setData] = React.useState({
     labels: ["O2", "N2", "H2O", "CO2"],
     datasets: [
@@ -40,10 +43,23 @@ const Donute_chart = () => {
       },
     ],
   });
+  const handleClick = (event, chartElements) => {
+    if (chartElements.length > 0) {
+      const index = chartElements[0]._index;
+      const value = data.datasets[0].data[index];
+      console.log(value);
+      console.log(data.labels[index]);
+      
+    }
+  };
 
   return (
     <div className="w-screen h-screen flex justify-center">
+<<<<<<< Updated upstream
       <Doughnut data={data} plugins={[textCenter]} />
+=======
+      <Doughnut data={data} height="100" width="100" getelementatevent={handleClick} />
+>>>>>>> Stashed changes
     </div>
   );
 };
