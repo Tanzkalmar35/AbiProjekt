@@ -9,10 +9,11 @@ import { useState, useEffect } from "react";
 
 const App = () => {
   //Changes the visibility of the chart
-  const [doughnut_chrat_view, setDoughnut_chrat_view] = useState(false);
+  const [doughnut_chrat_view, setDoughnut_chrat_view] = useState(true);
   const [bar_chrat_view, setbar_chrat_view] = useState(false);
   
-  const [line_chrat_view, setline_chrat_view] = useState(true);
+  const [line_chrat_view, setline_chrat_view] = useState(false);
+  
 
   return (
     <div className="">
