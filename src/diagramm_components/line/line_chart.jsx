@@ -43,7 +43,7 @@ const Line_chart = ({ trigger }) => {
         },
       ],
     });
-  }, 1000)
+  }, 60000)
 
   
   
@@ -51,8 +51,9 @@ const Line_chart = ({ trigger }) => {
     let next = current_data;
     
     
-    const remove = next.slice(0,1);
-    next[4] = Math.random() * (0.05 - 0.03) + 0.05;
+    const remove = next.splice(0,1);
+    next.push(Math.random() * (0.05 - 0.03) + 0.05);
+    console.log(next);
     
     return next;
   
