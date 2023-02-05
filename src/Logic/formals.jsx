@@ -7,7 +7,7 @@ export function co2_pre(last, room_dim){
     //Here will the app calculate the CO2 emissions in % for the next 5 minutes.
 
 
-    return [0.04,0.04,0.05,0.03, 0.02, 0.04];
+    return ;
 
 
 }

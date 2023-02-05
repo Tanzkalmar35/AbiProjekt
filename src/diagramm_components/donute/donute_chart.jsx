@@ -5,6 +5,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 
 
+
 const Donute_chart = ({ trigger }) => {
   chartjs.register(ArcElement, Tooltip, Legend);
 
