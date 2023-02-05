@@ -48,9 +48,7 @@ const Donute_chart = ({ trigger }) => {
     <div className="w-screen h-screen flex justify-center">
       <Doughnut data={data} plugins={[textCenter]} height="100" width="100" />
     </div>
-  ) : (
-    null
-  );
+  ) : null;
 };
 
 export default Donute_chart;
