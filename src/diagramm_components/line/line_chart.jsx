@@ -68,15 +68,15 @@ const Line_chart = ({ trigger }) => {
 
     return [
       hours + ":" + minutes,
-      hours + ":" + minutes + 1,
-      hours + ":" + minutes + 2,
-      hours + ":" + minutes + 3,
-      hours + ":" + minutes + 4,
+      hours + ":" + (minutes + 1),
+      hours + ":" + (minutes + 2),
+      hours + ":" + (minutes + 3),
+      hours + ":" + (minutes + 4),
     ];
   }
 
   return trigger ? (
-    <div className="w-screen h-screen flex justify-center align-middle">
+    <div className="w-3/6 h-3/6 flex justify-center align-middle">
       <Line data={chart} />
     </div>
   ) : null;
