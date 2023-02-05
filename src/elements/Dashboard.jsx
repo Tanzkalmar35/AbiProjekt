@@ -8,10 +8,10 @@ import { useState } from "react"
 
 const Dashboard = () => {
   //Changes the visibility of the chart
-  const [doughnut_chrat_view, setDoughnut_chrat_view] = useState(true);
+  const [doughnut_chrat_view, setDoughnut_chrat_view] = useState(false);
   const [bar_chrat_view, setbar_chrat_view] = useState(false);
 
-  const [line_chrat_view, setline_chrat_view] = useState(false);
+  const [line_chrat_view, setline_chrat_view] = useState(true);
 
   return (
     <div>
