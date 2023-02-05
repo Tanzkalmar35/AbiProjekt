@@ -5,28 +5,44 @@ import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 import { co2_pre } from "../../Logic/formals";
 
 const Line_chart = ({ trigger }) => {
+  chartjs.register(ArcElement, Tooltip, Legend);
+  
   //Alway get the current time as an array
   const [time, setTime] = useState(get_time);
 
   //This date will be pulled from Firebase
   const [current_data, setCurrentData] = useState([
-
-    0.04, 0.04, 0.03, 0.05, 0.03,
-
+    Math.random() * (0.05 - 0.03) + 0.05,
+    Math.random() * (0.05 - 0.03) + 0.05,
+    Math.random() * (0.05 - 0.03) + 0.05,
+    Math.random() * (0.05 - 0.03) + 0.05,
+    Math.random() * (0.05 - 0.03) + 0.05,
   ]);
+
+  const [options_for_chart, setoptions_for_chart] = useState({
+    tooltips: {
+      callbacks: {
+        label: function (tooltipItem, data) {
+          return data.datasets[tooltipItem.datasetIndex].label + ": " + "sus"
+        },
+      },
+    },
+  },);
 
   //Standart layout for chart data
   const [chart, setChart] = useState({
-
     //Those are the stamps under the chart
     labels: time,
     datasets: [
       {
         //Those are the points in the chart
         data: current_data,
-
+        label: "CO2 in the next 5 minuts",
+        
       },
     ],
+    options: options_for_chart,
+     
   });
 
   //update the chart dynamically
