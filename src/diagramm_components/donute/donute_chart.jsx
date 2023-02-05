@@ -60,6 +60,7 @@ const Donute_chart = () => {
       
 
       <Doughnut data={data} plugins={[textCenter]} height="100" width="100" options={options}  />
+      
 
     </div>
   );
