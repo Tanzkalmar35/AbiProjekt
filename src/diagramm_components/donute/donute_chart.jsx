@@ -1,15 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
+//Alway import this else it wont work
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 import { store } from "../../db";
 
-const Donute_chart = () => {
+const Donute_chart = ({ trigger }) => {
   chartjs.register(ArcElement, Tooltip, Legend);
 
-
-  const [middle, setMiddle] = useState("he");
-
+  //Draws the Text in the middel can't be changed (later maybe but right now its just "AIR QUALITY CHART")
   const textCenter = {
     id: "textCenter",
     beforeDatasetsDraw(chart, args, pluginOptions) {
@@ -27,7 +26,7 @@ const Donute_chart = () => {
     },
   };
 
-
+  //Sample data for the chart, later will be replaced with actual data from Firebase
   const [data, setData] = React.useState({
     labels: ["O2", "N2", "H2O", "CO2"],
     datasets: [
@@ -44,25 +43,13 @@ const Donute_chart = () => {
     ],
   });
 
-  const handleClick = (index) => {console.log(data.datasets[index])};
-  
-  const options = {
-    
-    onclick : console.log("clicked"),
-
-
-  }
-  
-
-  return (
+  //returns the chart object if trigger is true else returns null
+  return trigger ? (
     <div className="w-screen h-screen flex justify-center">
-
-      
-
-      <Doughnut data={data} plugins={[textCenter]} height="100" width="100" options={options}  />
-      
-
+      <Doughnut data={data} plugins={[textCenter]} height="100" width="100" />
     </div>
+  ) : (
+    null
   );
 };
 
