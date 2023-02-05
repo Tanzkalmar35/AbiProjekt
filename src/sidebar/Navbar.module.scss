@@ -1,0 +1,127 @@
+.navbar_container {
+    --color_nav_bg:rgb(28, 29, 31);
+    --color_nav_txt: rgb(100, 116, 139);
+    --color_nav_ctg: rgb(156 163 175);
+    --color_nav_active:rgb(85, 79, 232);
+    --color_nav_not_active: rgb(61, 74, 94);
+    --color_nav_active_bg:rgb(15, 23, 42);
+    --nav-width: 16rem;
+
+    background: var(--color_nav_bg);
+    height: 100vh;
+
+    padding: 2rem 1rem;
+    transition: transform 300ms ease-in-out;
+
+    border-right: 1px solid var(--color_nav_not_active);
+
+}
+
+nav {
+    position: relative;
+    width: var(--nav-width);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    // Hide the scrollbar
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    transition: width linear 0.2s;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+}
+
+.logo {
+    padding: 0.75rem;
+    font-size: 2.2rem;
+    display: flex;
+    justify-content: center;
+    scale: 2;
+
+    .logo_icon {
+        color: var(--color_nav_active);
+    }
+
+}
+
+.menu_container {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.categories {
+    color: var(--color_nav_txt);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    svg {
+        font-size: 1.2rem;
+    }
+}
+
+.second_category {
+    margin-top: 3rem;
+}
+
+.li_navlink a {
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    color: var(--color_nav_ctg);
+    transition: all ease-in-out 0.2s;
+
+    .description {
+        margin-left: 0.5rem;
+        font-weight: 400;
+        transition: opacity 200ms ease;
+    }
+
+    svg {
+        font-size: 1.5rem;
+        color: var(--color_nav_not_active);
+        flex-shrink: 0;
+    }
+
+    &:hover {
+        background: var(--color_nav_active_bg);
+    }
+
+    &:hover svg {
+        color: var(--color_nav_active);
+    }
+
+}
+
+.li_navlink .active {
+    background: var(--color_nav_active_bg);
+
+    svg {
+        color: var(--color_nav_active);
+    }
+
+}
+
+.nav_small {
+    width: 3rem;
+
+    .categories {
+        padding: 0 1rem;
+    }
+
+    .description {
+        opacity: 0;
+    }
+
+}
