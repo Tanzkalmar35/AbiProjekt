@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
 //Alway import this else it wont work
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
-import { co2_pre } from "../../Logic/formals";
 
-import {getDatabase, ref, set} from "firebase/database"
 
-const db = getDatabase();
 
 const Line_chart = ({ trigger }) => {
   chartjs.register(ArcElement, Tooltip, Legend);
-  
+
   //Alway get the current time as an array
   const [time, setTime] = useState(get_time);
 
@@ -27,11 +24,11 @@ const Line_chart = ({ trigger }) => {
     tooltips: {
       callbacks: {
         label: function (tooltipItem, data) {
-          return data.datasets[tooltipItem.datasetIndex].label + ": " + "sus"
+          return data.datasets[tooltipItem.datasetIndex].label + ": " + "sus";
         },
       },
     },
-  },);
+  });
 
   //Standart layout for chart data
   const [chart, setChart] = useState({
@@ -42,11 +39,9 @@ const Line_chart = ({ trigger }) => {
         //Those are the points in the chart
         data: current_data,
         label: "CO2 in the next 5 minuts",
-        
       },
     ],
     options: options_for_chart,
-     
   });
 
   //update the chart dynamically
@@ -93,15 +88,6 @@ const Line_chart = ({ trigger }) => {
       hours + ":" + (minutes + 3),
       hours + ":" + (minutes + 4),
     ];
-  }
-
-  const write_to_database = () => {
-    
-    set(ref(db, "CO2"), {"CO2" : (Math.random() * (0.05 - 0.03) + 0.05)});
-
-    
-
-
   }
 
   //Displays the chart if the trigger is true

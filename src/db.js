@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
-import "firebase/app"
+import "firebase/app";
 
-import {getDatabase, ref, set} from "firebase/database"
+import { getDatabase, ref, set } from "firebase/database";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -20,11 +20,14 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 export function store() {
-    set(ref(db, "User/"), {
-        name: "user1"
-    }).then(() => {
-        console.log("data inserted");
-    }).catch(() => {
-        console.log("data not inserted...");
+  set(ref(db, "CO2/"), {
+    CO2: Math.random() * (0.05 - 0.03) + 0.05
+  })
+    .then(() => {
+      console.log("data inserted");
+    })
+    .catch(() => {
+      console.log("data not inserted...");
     });
 }
+
