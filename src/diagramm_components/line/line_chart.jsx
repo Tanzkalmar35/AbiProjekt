@@ -5,6 +5,7 @@ import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 
 
 
+
 const Line_chart = ({ trigger }) => {
   chartjs.register(ArcElement, Tooltip, Legend);
 
@@ -49,7 +50,7 @@ const Line_chart = ({ trigger }) => {
   setTimeout(() => {
     setTime(get_time);
     setCurrentData(get_Data(current_data));
-
+    
     setChart({
       labels: time,
       datasets: [

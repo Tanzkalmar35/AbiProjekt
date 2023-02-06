@@ -3,12 +3,13 @@ import { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 //Alway import this else it wont work
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
+import { add_vorlage, new_data_overall } from "../../db";
 
 
 
 const Donute_chart = ({ trigger }) => {
   chartjs.register(ArcElement, Tooltip, Legend);
-
+ 
   //Draws the Text in the middel can't be changed (later maybe but right now its just "AIR QUALITY CHART")
   const textCenter = {
     id: "textCenter",
@@ -32,7 +33,9 @@ const Donute_chart = ({ trigger }) => {
   let H20 = 0.1;
   let N2 = 0.78;
 
-  
+  setTimeout(() => {
+    new_data_overall("random_id", "02-01-23");
+  },60000);
 
   //Sample data for the chart, later will be replaced with actual data from Firebase
   const [data, setData] = React.useState({
