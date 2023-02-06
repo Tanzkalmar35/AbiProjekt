@@ -140,12 +140,14 @@ export function new_data_overall(random_id, date_now) {
     time = `${hours}:${minutes}`;
   }
   if (!TRUE) {
+    
+    //Date already in the database just add the data
     update(ref(db, "Arduino/devices/" + random_id + "/data_overall/" + date_now +"/"), {
       [time]: data,
       
     });
 
-    //Date already in the database just add the data
+    
   } else {
     //Create a new object with the current date as key
     set(ref(db, "Arduino/devices/" + random_id + "/data_overall"), {
