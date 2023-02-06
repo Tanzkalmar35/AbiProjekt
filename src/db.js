@@ -14,19 +14,9 @@ const blueprint = {
       N2: 0.78,
     },
 
-    data_overall: {
-      "01-01-23": {
-        "12:01": {
-          HH20: 0.1,
-
-          CO2: 0.04,
-
-          O2: 0.2,
-
-          N2: 0.78,
-        },
-
-        "12:02": {
+    history: {
+      "Last-10-days": {
+        1: {
           H20: 0.1,
 
           CO2: 0.04,
@@ -36,7 +26,7 @@ const blueprint = {
           N2: 0.78,
         },
 
-        "12:03": {
+        2: {
           H20: 0.1,
 
           CO2: 0.04,
@@ -46,7 +36,76 @@ const blueprint = {
           N2: 0.78,
         },
 
-        "12:04": {
+        3: {
+          H20: 0.1,
+
+          CO2: 0.04,
+
+          O2: 0.2,
+
+          N2: 0.78,
+        },
+
+        4: {
+          H20: 0.1,
+
+          CO2: 0.04,
+
+          O2: 0.2,
+
+          N2: 0.78,
+        },
+
+        5: {
+          H20: 0.1,
+
+          CO2: 0.04,
+
+          O2: 0.2,
+
+          N2: 0.78,
+        },
+
+        6: {
+          H20: 0.1,
+
+          CO2: 0.04,
+
+          O2: 0.2,
+
+          N2: 0.78,
+        },
+
+        7: {
+          H20: 0.1,
+
+          CO2: 0.04,
+
+          O2: 0.2,
+
+          N2: 0.78,
+        },
+        8: {
+          H20: 0.1,
+
+          CO2: 0.04,
+
+          O2: 0.2,
+
+          N2: 0.78,
+        },
+
+        9: {
+          H20: 0.1,
+
+          CO2: 0.04,
+
+          O2: 0.2,
+
+          N2: 0.78,
+        },
+
+        10: {
           H20: 0.1,
 
           CO2: 0.04,
@@ -140,14 +199,16 @@ export function new_data_overall(random_id, date_now) {
     time = `${hours}:${minutes}`;
   }
   if (!TRUE) {
-    
     //Date already in the database just add the data
-    update(ref(db, "Arduino/devices/" + random_id + "/data_overall/" + date_now +"/"), {
-      [time]: data,
-      
-    });
-
-    
+    update(
+      ref(
+        db,
+        "Arduino/devices/" + random_id + "/data_overall/" + date_now + "/"
+      ),
+      {
+        [time]: data,
+      }
+    );
   } else {
     //Create a new object with the current date as key
     set(ref(db, "Arduino/devices/" + random_id + "/data_overall"), {

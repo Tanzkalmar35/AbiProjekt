@@ -33,9 +33,7 @@ const Donute_chart = ({ trigger }) => {
   let H20 = 0.1;
   let N2 = 0.78;
 
-  setTimeout(() => {
-    new_data_overall("random_id", "02-01-23");
-  },60000);
+  add_vorlage();
 
   //Sample data for the chart, later will be replaced with actual data from Firebase
   const [data, setData] = React.useState({
