@@ -3,11 +3,11 @@ import { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 //Alway import this else it wont work
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
-import { add_vorlage, new_data_overall } from "../../db";
+import { add_vorlage, new_data_overall, get_current_data } from "../../db";
 
 const Donute_chart = ({ trigger }) => {
   chartjs.register(ArcElement, Tooltip, Legend);
-
+  
   //Draws the Text in the middel can't be changed (later maybe but right now its just "AIR QUALITY CHART")
   const textCenter = {
     id: "textCenter",
@@ -25,7 +25,7 @@ const Donute_chart = ({ trigger }) => {
       );
     },
   };
-
+ 
   const options = {
     Tooltips: {
       callbacks: {

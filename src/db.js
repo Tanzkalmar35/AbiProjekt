@@ -1,13 +1,13 @@
 import { initializeApp } from "firebase/app";
 import "firebase/app";
 
-import { getDatabase, ref, set, update } from "firebase/database";
+import { getDatabase, ref, set, update,  } from "firebase/database";
 const blueprint = {
   random_id: {
     current_data: {
       H20: 0.1,
 
-      CO2: 0.04,
+      CO2: 0.0004,
 
       O2: 0.2,
 
@@ -146,7 +146,7 @@ const add_data_overall_vorlage = () => {
 const data = {
   H20: 0.1,
 
-  CO2: 0.04,
+  CO2: 0.0004,
 
   O2: 0.2,
 
@@ -217,4 +217,13 @@ export function new_data_overall(random_id, date_now) {
   }
 
   console.log("finished writing...");
+}
+
+export function get_current_data(random_id) {
+  
+
+  on(ref("Arduino/devices" + random_id + "/current_data", function(snapshot){
+    var data = snapshot.val();
+    console.log(data);
+  }))
 }
