@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import "firebase/app";
 
-import { getDatabase, ref, set, update,  } from "firebase/database";
+import { getDatabase, ref, set, update, onValue  } from "firebase/database";
 const blueprint = {
   random_id: {
     current_data: {
@@ -219,11 +219,12 @@ export function new_data_overall(random_id, date_now) {
   console.log("finished writing...");
 }
 
-export function get_current_data(random_id) {
+export function get_current_data(randomId) {
   
-
-  on(ref("Arduino/devices" + random_id + "/current_data", function(snapshot){
-    var data = snapshot.val();
-    console.log(data);
-  }))
+  const starCountRef = ref(db, "Arduino/devices/" + randomId + "/current_data");
+  onValue(starCountRef, (snapshot) => {
+    const data = snapshot.val();
+    return [data.O2, data.N2, data.H20, data.CO2]
+  });
+  
 }
