@@ -87,7 +87,7 @@ const Donute_chart = ({ trigger }) => {
 
   //returns the chart object if trigger is true else returns null
   return trigger ? (
-    <div className="w-screen h-screen flex justify-center">
+    <div className="w-screen h-screen flex justify-center ">
       <Doughnut
         data={data}
         options={chart_option.options}
