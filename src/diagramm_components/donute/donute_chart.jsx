@@ -6,7 +6,6 @@ import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 import { add_vorlage, new_data_overall, get_current_data } from "../../db";
 
 const Donute_chart = ({ trigger }) => {
-  
   chartjs.register(ArcElement, Tooltip, Legend);
   /*
   Normal levels
@@ -36,6 +35,21 @@ const Donute_chart = ({ trigger }) => {
       );
     },
   };
+
+  const [current_data, setCurrentData] = useState([]);
+
+  setTimeout(() => {
+    async function fetchData() {
+      const data = await get_current_data("random_id");
+      if (data) {
+        setCurrentData(data);
+      } else {
+        setCurrentData([]);
+      }
+      console.log(data)
+    }
+    fetchData();
+  }, 1000);
 
   const [chart_option, setChartOptions] = useState({
     options: {
@@ -71,19 +85,17 @@ const Donute_chart = ({ trigger }) => {
     //this will be late read from the database
     type: "doughnut",
     labels: ["O2", "N2", "H2O", "CO2"],
-    datasets: [
-      {
-        data: get_current_data("random_id"),
-        backgroundColor: [
-          "rgba(101, 147, 245)",
-          "rgba(0, 0, 128)",
-          "rgb(16 52 166)",
-          "rgb(0 49 80)",
-        ],
-        borderColor: "black",
-        hoverOffset: 20,
-      },
-    ],
+    datasets: [{
+      data: current_data,
+      backgroundColor: [
+        "rgba(101, 147, 245)",
+        "rgba(0, 0, 128)",
+        "rgb(16 52 166)",
+        "rgb(0 49 80)",
+      ],
+      borderColor: "black",
+      hoverOffset: 20,
+    }],
   });
 
   //returns the chart object if trigger is true else returns null
@@ -91,6 +103,7 @@ const Donute_chart = ({ trigger }) => {
     <div className="w-screen h-screen flex justify-center ">
       <Doughnut
         data={data}
+        
         options={chart_option.options}
         height="100"
         width="100"

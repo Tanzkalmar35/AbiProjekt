@@ -220,11 +220,13 @@ export function new_data_overall(random_id, date_now) {
 }
 
 export function get_current_data(randomId) {
-  
+  let current_data;
   const starCountRef = ref(db, "Arduino/devices/" + randomId + "/current_data");
-  onValue(starCountRef, (snapshot) => {
-    const data = snapshot.val();
-    return [data.O2, data.N2, data.H20, data.CO2]
-  });
-  
+  async function load(){
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+      current_data = [data.O2, data.N2, data.H20, data.CO2];
+    })
+  }
+  return current_data;
 }
