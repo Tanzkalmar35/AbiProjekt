@@ -38,17 +38,40 @@ const Donute_chart = ({ trigger }) => {
 
   const [current_data, setCurrentData] = useState([]);
 
-  setTimeout(() => {
-    async function fetchData() {
-      const data = await get_current_data("random_id");
+  const fetchData = () => {
+    get_current_data("random_id", (data) => {
       if (data) {
         setCurrentData(data);
+        console.log("Data: " + data);
       } else {
-        setCurrentData([]);
+        setCurrentData([O2, N2, H20, CO2]);
+        console.log("No data")
       }
-      console.log(data)
-    }
+      
+    });
+  };
+ 
+
+  setTimeout(() => {
+    
     fetchData();
+    setData({
+      //this will be late read from the database
+      type: "doughnut",
+      labels: ["O2", "N2", "H2O", "CO2"],
+      datasets: [{
+        data: current_data,
+        backgroundColor: [
+          "rgba(101, 147, 245)",
+          "rgba(0, 0, 128)",
+          "rgb(16 52 166)",
+          "rgb(0 49 80)",
+        ],
+        borderColor: "black",
+        hoverOffset: 20,
+      }],
+    })
+    
   }, 1000);
 
   const [chart_option, setChartOptions] = useState({

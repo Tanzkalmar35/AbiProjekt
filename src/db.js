@@ -219,14 +219,12 @@ export function new_data_overall(random_id, date_now) {
   console.log("finished writing...");
 }
 
-export function get_current_data(randomId) {
-  let current_data;
+export function get_current_data(randomId, callback) {
   const starCountRef = ref(db, "Arduino/devices/" + randomId + "/current_data");
-  async function load(){
-    onValue(starCountRef, (snapshot) => {
-      const data = snapshot.val();
-      current_data = [data.O2, data.N2, data.H20, data.CO2];
-    })
-  }
-  return current_data;
+  onValue(starCountRef, (snapshot) => {
+    let data = snapshot.val();
+    
+    let current_data = [data.O2, data.N2, data.H20, data.CO2 * 100];
+    callback(current_data);
+  });
 }
