@@ -6,6 +6,7 @@ import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 import { add_vorlage, new_data_overall, get_current_data } from "../../db";
 
 const Donute_chart = ({ trigger }) => {
+  //Dont rly understand but is needed for better styles
   chartjs.register(ArcElement, Tooltip, Legend);
   /*
   Normal levels
@@ -36,56 +37,63 @@ const Donute_chart = ({ trigger }) => {
     },
   };
 
+  //This is the const for storing the current data its a state so it can be updated
   const [current_data, setCurrentData] = useState([]);
 
+  /*This data is using the get_current_data function 
+  to get the current data and if there is no it will use the normal data*/
   const fetchData = () => {
     get_current_data("random_id", (data) => {
       if (data) {
         setCurrentData(data);
-        console.log("Data: " + data);
+        
       } else {
         setCurrentData([O2, N2, H20, CO2]);
-        console.log("No data")
+        console.log("No data");
       }
-      
     });
   };
- 
-
+  //This timeout is called every second to get the current data
   setTimeout(() => {
-    
     fetchData();
+    //sets the Data to a new Data object
     setData({
       //this will be late read from the database
       type: "doughnut",
       labels: ["O2", "N2", "H2O", "CO2"],
-      datasets: [{
-        data: current_data,
-        backgroundColor: [
-          "rgba(101, 147, 245)",
-          "rgba(0, 0, 128)",
-          "rgb(16 52 166)",
-          "rgb(0 49 80)",
-        ],
-        borderColor: "black",
-        hoverOffset: 20,
-      }],
-    })
-    
+      datasets: [
+        {
+          data: current_data,
+          backgroundColor: [
+            "rgba(101, 147, 245)",
+            "rgba(0, 0, 128)",
+            "rgb(16 52 166)",
+            "rgb(0 49 80)",
+          ],
+          borderColor: "black",
+          hoverOffset: 20,
+        },
+      ],
+    });
   }, 1000);
 
+  
+
+  //Those are the options for the chart
   const [chart_option, setChartOptions] = useState({
     options: {
       plugins: {
         legend: {
+          //Shows the legend and its styles
           display: true,
           position: "bottom",
           labels: { padding: 25 },
         },
+        //Tooltips very annoying to implement
         tooltip: {
           callbacks: {
             label: (context) => {
-              console.log(context);
+              
               if (context.label == "CO2") {
                 return CO2 * 100 + "%";
               } else {
@@ -94,6 +102,7 @@ const Donute_chart = ({ trigger }) => {
             },
           },
         },
+        //Just the basic title will be changed in the future
         title: {
           display: true,
           text: "H2O : 0.1 | O2 : 0.1 | N2 : 0.78 | CO2 < 0.1",
@@ -108,17 +117,19 @@ const Donute_chart = ({ trigger }) => {
     //this will be late read from the database
     type: "doughnut",
     labels: ["O2", "N2", "H2O", "CO2"],
-    datasets: [{
-      data: current_data,
-      backgroundColor: [
-        "rgba(101, 147, 245)",
-        "rgba(0, 0, 128)",
-        "rgb(16 52 166)",
-        "rgb(0 49 80)",
-      ],
-      borderColor: "black",
-      hoverOffset: 20,
-    }],
+    datasets: [
+      {
+        data: current_data,
+        backgroundColor: [
+          "rgba(101, 147, 245)",
+          "rgba(0, 0, 128)",
+          "rgb(16 52 166)",
+          "rgb(0 49 80)",
+        ],
+        borderColor: "black",
+        hoverOffset: 20,
+      },
+    ],
   });
 
   //returns the chart object if trigger is true else returns null
@@ -126,7 +137,6 @@ const Donute_chart = ({ trigger }) => {
     <div className="w-screen h-screen flex justify-center ">
       <Doughnut
         data={data}
-        
         options={chart_option.options}
         height="100"
         width="100"

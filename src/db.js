@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import "firebase/app";
 
 import { getDatabase, ref, set, update, onValue  } from "firebase/database";
+
+//is the blueprint for the Firebase structured data
 const blueprint = {
   random_id: {
     current_data: {
@@ -118,7 +120,7 @@ const blueprint = {
     },
   },
 };
-
+//Adds a basic set of data overall
 const add_data_overall_vorlage = () => {
   const date = new Date();
   const hours = date.getHours();
@@ -142,15 +144,15 @@ const add_data_overall_vorlage = () => {
     },
   };
 };
-
+//Basic data
 const data = {
-  H20: 0.1,
+  H20:  Math.random() * (0.02 - 0.01) + 0.02,
 
-  CO2: 0.0004,
+  CO2:  Math.random() * (0.0005 - 0.0003) + 0.0005,
 
   O2: 0.2,
 
-  N2: 0.78,
+  N2:  Math.random() * (0.80 - 0.65) + 0.80,
 };
 
 // Your web app's Firebase configuration
@@ -169,6 +171,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
+
+//Adds the vorlage
 export function add_vorlage() {
   set(ref(db, "Arduino/"), {
     devices: blueprint,
@@ -180,6 +184,7 @@ export function add_vorlage() {
       console.log("data not inserted...");
     });
 }
+
 //First check if a day is already in the database
 //under data_overall if yes the programm will
 //add data with a timestamp else the programm will
@@ -218,7 +223,7 @@ export function new_data_overall(random_id, date_now) {
 
   console.log("finished writing...");
 }
-
+//Fetches data from the database further comments will be added later
 export function get_current_data(randomId, callback) {
   const starCountRef = ref(db, "Arduino/devices/" + randomId + "/current_data");
   onValue(starCountRef, (snapshot) => {
@@ -227,4 +232,14 @@ export function get_current_data(randomId, callback) {
     let current_data = [data.O2, data.N2, data.H20, data.CO2 * 100];
     callback(current_data);
   });
+}
+
+//Sets random data for testing purposes
+export function set_random_data(randomId){
+  
+  set(ref(db, "Arduino/devices/" + randomId + "/"),{
+    current_data : data
+  })
+
+  console.log("New Data:" + data)
 }
