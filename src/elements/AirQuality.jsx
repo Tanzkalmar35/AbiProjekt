@@ -5,8 +5,8 @@ import { useState } from "react"
 
 const AirQuality = () => {
   return (
-    <div><p>AirQuality</p>
-    <Line_chart trigger={ture}></Line_chart></div>
+    <div><p>AirQuality</p></div>
+    
     
   )
 }
