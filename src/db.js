@@ -234,12 +234,4 @@ export function get_current_data(randomId, callback) {
   });
 }
 
-//Sets random data for testing purposes
-export function set_random_data(randomId){
-  
-  set(ref(db, "Arduino/devices/" + randomId + "/"),{
-    current_data : data
-  })
 
-  console.log("New Data:" + data)
-}
