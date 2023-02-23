@@ -234,4 +234,20 @@ export function get_current_data(randomId, callback) {
   });
 }
 
+export function get_CO2_overtime(random_id, callback){
+
+  const statref = ref(db,"/Arduino/devices/random_id/co2_overtime" );
+  onValue(statref, (snapshot) => {
+    
+    let data = snapshot.val();
+    data.forEach(element => {
+      console.log(element)
+      
+    });
+    callback(data);
+    
+  })
+
+}
+
 

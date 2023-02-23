@@ -3,11 +3,14 @@ import { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 //Alway import this else it wont work
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
-import { add_vorlage, new_data_overall, get_current_data } from "../../db";
+import { add_vorlage, new_data_overall, get_current_data, get_CO2_overtime } from "../../db";
 
 const Donute_chart = ({ trigger }) => {
   //Dont rly understand but is needed for better styles
   chartjs.register(ArcElement, Tooltip, Legend);
+  
+  setTimeout(get_CO2_overtime("random_id", (data) => {if(data){console.log(data)}else{console.log("No data")}}), 100000);
+  
   /*
   Normal levels
   N2 = 0.78
