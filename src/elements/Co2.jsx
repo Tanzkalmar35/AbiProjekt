@@ -2,6 +2,7 @@ import React from "react";
 import Line_chart from "../diagramm_components/line/line_chart";
 import { useState } from "react";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
+import { get_CO2_overtime } from "../db";
 
 const Co2 = () => {
   chartjs.register(ArcElement, Tooltip, Legend);
@@ -23,8 +24,8 @@ const Co2 = () => {
         legend: {
           //Shows the legend and its styles
           display: true,
-          position : "bottom"
-          
+          position: "bottom"
+
         },
         tooltip: {
           callbacks: {
@@ -33,7 +34,7 @@ const Co2 = () => {
             },
           },
         },
-        
+
       },
     },
   });
@@ -56,7 +57,7 @@ const Co2 = () => {
 
   setTimeout(() => {
     setTime(get_time);
-    setCurrentData(get_Data(current_data));
+    setCurrentData(get_Data());
 
     setChart({
       labels: time,
@@ -70,14 +71,18 @@ const Co2 = () => {
 
   //This function is deleting the first element of the array and adds a new one at the end
 
-  function get_Data(data) {
-    let next = current_data;
+  function get_Data() {
 
-    const remove = next.splice(0, 1);
-    next.push(Math.random() * (0.05 - 0.03) + 0.05);
-    console.log(next);
 
-    return next;
+    get_CO2_overtime("random_id", (data) => {
+      if (data) {
+        console.log(data);
+        return [...data];
+      } else { console.log("No data");
+      return [] }
+    });
+
+   
   }
 
   /*THis function is getting the current time and makes a array where the first 

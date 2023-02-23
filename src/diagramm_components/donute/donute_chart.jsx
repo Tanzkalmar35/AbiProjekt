@@ -9,7 +9,7 @@ const Donute_chart = ({ trigger }) => {
   //Dont rly understand but is needed for better styles
   chartjs.register(ArcElement, Tooltip, Legend);
   
-  setTimeout(get_CO2_overtime("random_id", (data) => {if(data){console.log(data)}else{console.log("No data")}}), 100000);
+  
   
   /*
   Normal levels
