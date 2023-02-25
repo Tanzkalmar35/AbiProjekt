@@ -21,6 +21,8 @@ const Co2 = () => {
     Math.random() * (0.05 - 0.03) + 0.05,
   ]);
 
+  const future_data = useState([0, 0, 0, 0, 0]);
+
   const [options_for_chart, setoptions_for_chart] = useState({
     options: {
       plugins: {
@@ -47,7 +49,8 @@ const Co2 = () => {
     datasets: [
       {
         //Those are the points in the chart
-        data: current_data,
+        data: [0,0,0,0,0]
+        ,
         label: "CO2 in the next 5 minuts",
       },
     ],
@@ -64,7 +67,12 @@ const Co2 = () => {
       labels: time,
       datasets: [
         {
-          data: current_data,
+          data: () => {
+            if (trigger_future == true) {
+              return future_data;
+            } else {
+              return current_data;
+            }},
         },
       ],
     });
@@ -107,10 +115,24 @@ const Co2 = () => {
         <p>CO2 Page</p>
       </div>
       <div className="flex justify-center m-10">
-        <button className="bg-purple-900 mr-5 rounded-md text-xl" type="button" onClick={() => {setTriggerFuture(true); setTriggerHistory(false)}}>
+        <button
+          className="bg-purple-900 mr-5 rounded-md text-xl"
+          type="button"
+          onClick={() => {
+            setTriggerFuture(true);
+            setTriggerHistory(false);
+          }}
+        >
           CO2 in future
         </button>
-        <button className="bg-purple-900 ml-5 rounded-md text-xl" type="button" onClick={() => {setTriggerFuture(false); setTriggerHistory(true)}}>
+        <button
+          className="bg-purple-900 ml-5 rounded-md text-xl"
+          type="button"
+          onClick={() => {
+            setTriggerFuture(false);
+            setTriggerHistory(true);
+          }}
+        >
           CO2 History
         </button>
       </div>
