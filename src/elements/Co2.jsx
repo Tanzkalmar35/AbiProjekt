@@ -9,6 +9,9 @@ const Co2 = () => {
   //Alway get the current time as an array
   const [time, setTime] = useState(get_time);
 
+  const [trigger_history, setTriggerHistory] = useState(false);
+  const [trigger_future, setTriggerFuture] = useState(true);
+
   //This date will be pulled from Firebase
   const [current_data, setCurrentData] = useState([
     Math.random() * (0.05 - 0.03) + 0.05,
@@ -24,17 +27,15 @@ const Co2 = () => {
         legend: {
           //Shows the legend and its styles
           display: true,
-          position: "bottom"
-
+          position: "bottom",
         },
         tooltip: {
           callbacks: {
             label: (context) => {
-              return context.parsed
+              return context.parsed;
             },
           },
         },
-
       },
     },
   });
@@ -72,17 +73,15 @@ const Co2 = () => {
   //This function is deleting the first element of the array and adds a new one at the end
 
   function get_Data() {
-
-
     get_CO2_overtime("random_id", (data) => {
       if (data) {
         console.log(data);
         return [...data];
-      } else { console.log("No data");
-      return [] }
+      } else {
+        console.log("No data");
+        return [];
+      }
     });
-
-   
   }
 
   /*THis function is getting the current time and makes a array where the first 
@@ -103,12 +102,32 @@ const Co2 = () => {
     ];
   }
   return (
-    <div>
-      <Line_chart
-        trigger={true}
-        data={chart}
-        options={options_for_chart.options}
-      ></Line_chart>
+    <div className="">
+      <div className="text-5xl p-4  flex justify-center">
+        <p>CO2 Page</p>
+      </div>
+      <div className="flex justify-center m-10">
+        <button className="bg-purple-900 mr-5 rounded-md text-xl" type="button" onClick={() => {setTriggerFuture(true); setTriggerHistory(false)}}>
+          CO2 in future
+        </button>
+        <button className="bg-purple-900 ml-5 rounded-md text-xl" type="button" onClick={() => {setTriggerFuture(false); setTriggerHistory(true)}}>
+          CO2 History
+        </button>
+      </div>
+      <div className="flex justify-center">
+        <Line_chart
+          trigger={trigger_history}
+          data={chart}
+          options={options_for_chart.options}
+        ></Line_chart>
+      </div>
+      <div className="flex justify-center">
+        <Line_chart
+          trigger={trigger_future}
+          data={chart}
+          options={options_for_chart.options}
+        ></Line_chart>
+      </div>
     </div>
   );
 };
