@@ -67,12 +67,7 @@ const Co2 = () => {
       labels: time,
       datasets: [
         {
-          data: () => {
-            if (trigger_future == true) {
-              return future_data;
-            } else {
-              return current_data;
-            }},
+          data: current_data,
         },
       ],
     });
@@ -114,38 +109,16 @@ const Co2 = () => {
       <div className="text-5xl p-4  flex justify-center">
         <p>CO2 Page</p>
       </div>
-      <div className="flex justify-center m-10">
-        <button
-          className="bg-purple-900 mr-5 rounded-md text-xl"
-          type="button"
-          onClick={() => {
-            setTriggerFuture(true);
-            setTriggerHistory(false);
-          }}
-        >
-          CO2 in future
-        </button>
-        <button
-          className="bg-purple-900 ml-5 rounded-md text-xl"
-          type="button"
-          onClick={() => {
-            setTriggerFuture(false);
-            setTriggerHistory(true);
-          }}
-        >
-          CO2 History
-        </button>
-      </div>
+      
       <div className="flex justify-center">
         <Line_chart
-          trigger={trigger_history}
+          trigger={true}
           data={chart}
           options={options_for_chart.options}
         ></Line_chart>
-      </div>
-      <div className="flex justify-center">
+     
         <Line_chart
-          trigger={trigger_future}
+          trigger={true}
           data={chart}
           options={options_for_chart.options}
         ></Line_chart>
