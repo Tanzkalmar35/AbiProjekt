@@ -49,7 +49,7 @@ const Co2 = () => {
     datasets: [
       {
         //Those are the points in the chart
-        data: [0,0,0,0,0]
+        data : current_data
         ,
         label: "CO2 in the next 5 minuts",
       },

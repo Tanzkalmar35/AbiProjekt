@@ -89,7 +89,7 @@ const Donute_chart = ({ trigger }) => {
         legend: {
           //Shows the legend and its styles
           display: true,
-          position: "bottom",
+          position: "left",
           labels: { padding: 25 },
         },
         //Tooltips very annoying to implement
