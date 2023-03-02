@@ -1,117 +1,115 @@
-import React from 'react'
+import React from "react";
 import Line_chart from "../diagramm_components/line/line_chart";
 import { useState } from "react";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 import { get_CO2_overtime } from "../db";
 
 function Co2_history_chart() {
-    chartjs.register(ArcElement, Tooltip, Legend);
-    //Alway get the current time as an array
-    const [time, setTime] = useState(get_time);
+  chartjs.register(ArcElement, Tooltip, Legend);
   
-    const [trigger_history, setTriggerHistory] = useState(false);
-    const [trigger_future, setTriggerFuture] = useState(true);
-  
-    //This date will be pulled from Firebase
-    const [current_data, setCurrentData] = useState([
-      Math.random() * (0.05 - 0.03) + 0.05,
-      Math.random() * (0.05 - 0.03) + 0.05,
-      Math.random() * (0.05 - 0.03) + 0.05,
-      Math.random() * (0.05 - 0.03) + 0.05,
-      Math.random() * (0.05 - 0.03) + 0.05,
-    ]);
-  
-    const future_data = useState([0, 0, 0, 0, 0]);
-  
-    const [options_for_chart, setoptions_for_chart] = useState({
-      options: {
-        plugins: {
-          legend: {
-            //Shows the legend and its styles
-            display: true,
-            position: "bottom",
-          },
-          tooltip: {
-            callbacks: {
-              label: (context) => {
-                return context.parsed;
-              },
+  //Alway get the current time as an array
+  const [time, setTime] = useState(get_time);
+
+  //This date will be pulled from Firebase
+  const [current_data, setCurrentData] = useState([
+    Math.random() * (0.05 - 0.03) + 0.05,
+    Math.random() * (0.05 - 0.03) + 0.05,
+    Math.random() * (0.05 - 0.03) + 0.05,
+    Math.random() * (0.05 - 0.03) + 0.05,
+    Math.random() * (0.05 - 0.03) + 0.05,
+  ]);
+
+  const [options_for_chart, setoptions_for_chart] = useState({
+    options: {
+      plugins: {
+        legend: {
+          //Shows the legend and its styles
+          display: true,
+          position: "bottom",
+        },
+        tooltip: {
+          callbacks: {
+            label: (context) => {
+              console.log("Howerd");
+              return context.parsed;
             },
           },
         },
       },
-    });
-  
-    //Standart layout for chart data
-    const [chart, setChart] = useState({
-      //Those are the stamps under the chart
+    },
+  });
+
+  //Standart layout for chart data
+  const [chart, setChart] = useState({
+    //Those are the stamps under the chart
+    labels: time,
+    datasets: [
+      {
+        //Those are the points in the chart
+        data: current_data,
+        label: "CO2 Hisotry chart",
+      },
+    ],
+    options: options_for_chart,
+  });
+
+  //update the chart dynamically
+
+  setTimeout(() => {
+    setTime(get_time);
+    setCurrentData(get_Data());
+
+    setChart({
       labels: time,
       datasets: [
         {
-          //Those are the points in the chart
-          data : current_data
-          ,
-          label: "CO2 in the next 5 minuts",
+          data: current_data,
+          label: "CO2 Hisotry chart",
         },
       ],
-      options: options_for_chart,
     });
-  
-    //update the chart dynamically
-  
-    setTimeout(() => {
-      setTime(get_time);
-      setCurrentData(get_Data());
-  
-      setChart({
-        labels: time,
-        datasets: [
-          {
-            data: current_data,
-          },
-        ],
-      });
-    }, 60000);
-  
-    //This function is deleting the first element of the array and adds a new one at the end
-  
-    function get_Data() {
-      get_CO2_overtime("random_id", (data) => {
-        if (data) {
-          console.log(data);
-          return [...data];
-        } else {
-          console.log("No data");
-          return [];
-        }
-      });
-    }
-  
-    /*THis function is getting the current time and makes a array where the first 
+    console.log("CO2 Hisotry chart updated");
+  }, 10000);
+
+  //This function is deleting the first element of the array and adds a new one at the end
+
+  function get_Data() {
+    get_CO2_overtime("random_id", (data) => {
+      if (data) {
+        console.log(data);
+        return [...data];
+      } else {
+        console.log("No data");
+        return [];
+      }
+    });
+  }
+
+  /*THis function is getting the current time and makes a array where the first 
      element is the current time and following elements 
      are the current data + minutes*/
-  
-    function get_time() {
-      const date = new Date();
-      const hours = date.getHours();
-      const minutes = date.getMinutes();
-  
-      return [
-        hours + ":" + minutes,
-        hours + ":" + (minutes + 1),
-        hours + ":" + (minutes + 2),
-        hours + ":" + (minutes + 3),
-        hours + ":" + (minutes + 4),
-      ];
-    }
-  
-   return (
+
+  function get_time() {
+    const date = new Date();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    return [
+      hours + ":" + minutes,
+      hours + ":" + (minutes + 1),
+      hours + ":" + (minutes + 2),
+      hours + ":" + (minutes + 3),
+      hours + ":" + (minutes + 4),
+    ];
+  }
+
+  return (
     <Line_chart
-          trigger={true}
-          data={chart}
-          options={options_for_chart.options}
-        ></Line_chart>
-  )
+      trigger={true}
+      data={chart}
+      options={options_for_chart.options}
+    ></Line_chart>
+  );
 }
 
-export default Co2_history_chart
+export default Co2_history_chart;
