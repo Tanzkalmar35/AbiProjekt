@@ -9,4 +9,5 @@ export function future_values(Data1, Data2) {
     results.push(test);
   }
   console.log(results);
+  return results;
 }
