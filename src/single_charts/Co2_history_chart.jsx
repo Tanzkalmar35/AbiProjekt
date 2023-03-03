@@ -58,7 +58,7 @@ function Co2_history_chart() {
   setTimeout(() => {
     setTime(get_time);
     setCurrentData(get_Data());
-
+    console.log("Current data" + current_data);
     setChart({
       labels: time,
       datasets: [
@@ -74,6 +74,7 @@ function Co2_history_chart() {
   //This function is deleting the first element of the array and adds a new one at the end
 
   function get_Data() {
+    console.log("reading data");
     get_CO2_overtime("random_id", (data) => {
       if (data) {
         console.log(data);

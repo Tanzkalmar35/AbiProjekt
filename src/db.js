@@ -2,7 +2,20 @@ import { initializeApp } from "firebase/app";
 import "firebase/app";
 
 import { getDatabase, ref, set, update, onValue  } from "firebase/database";
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyB0PjT0hCV-9QpmwxNeWz0QZwdh4iPdYQQ",
+  authDomain: "meister-mimi.firebaseapp.com",
+  databaseURL: "https://meister-mimi-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "meister-mimi",
+  storageBucket: "meister-mimi.appspot.com",
+  messagingSenderId: "876451638333",
+  appId: "1:876451638333:web:2097cc532d2234434f4e54"
+};
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 //is the blueprint for the Firebase structured data
 const blueprint = {
   random_id: {
@@ -155,21 +168,7 @@ const data = {
   N2:  Math.random() * (0.80 - 0.65) + 0.80,
 };
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyB0PjT0hCV-9QpmwxNeWz0QZwdh4iPdYQQ",
-  authDomain: "meister-mimi.firebaseapp.com",
-  databaseURL:
-    "https://meister-mimi-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "meister-mimi",
-  storageBucket: "meister-mimi.appspot.com",
-  messagingSenderId: "876451638333",
-  appId: "1:876451638333:web:2097cc532d2234434f4e54",
-};
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
 
 
 //Adds the vorlage
@@ -236,7 +235,7 @@ export function get_current_data(randomId, callback) {
 
 export function get_CO2_overtime(random_id, callback){
 
-  const statref = ref(db,"/Arduino/devices/random_id/co2_overtime" );
+  let statref = ref(db,"/Arduino/devices/random_id/co2_overtime" );
   onValue(statref, (snapshot) => {
     
     let data = snapshot.val();
@@ -246,6 +245,12 @@ export function get_CO2_overtime(random_id, callback){
     });
     callback(data);
     
+    
+  })
+  statref = ref(db,"/Arduino/devices/random_id/co2_overtime/1" );
+  onValue(statref, (snapshot) => {
+    let cum = snapshot.val();
+    console.log(cum);
   })
 
 }
