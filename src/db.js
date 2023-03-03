@@ -231,7 +231,7 @@ export function get_current_data(randomId, callback) {
   });
 }
 
-export function get_CO2_overtime(random_id, callback) {
+export function  get_CO2_overtime(random_id, callback) {
   let statref = ref(db, "/Arduino/devices/random_id/co2_overtime");
   
   let data = [];

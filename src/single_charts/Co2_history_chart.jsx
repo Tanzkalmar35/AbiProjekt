@@ -32,7 +32,7 @@ function Co2_history_chart() {
           callbacks: {
             label: (context) => {
               console.log("Howerd");
-              return context.parsed;
+              return "CO2 Percentage:" +  context.raw + "%";
             },
           },
         },
@@ -56,9 +56,9 @@ function Co2_history_chart() {
 
   //update the chart dynamically
 
-  setTimeout(() => {
+  setTimeout(async () => {
     setTime(get_time);
-    let sss = get_Data;
+    let sss = await get_Data();
     setCurrentData(sss);
     console.log("Current data: " + current_data);
     setChart({
@@ -77,14 +77,16 @@ function Co2_history_chart() {
 
   function get_Data() {
     console.log("reading data");
-    get_CO2_overtime("random_id",  async (data) => {
-      if (data) {
-        console.log(data);
-        return [...data];
-      } else {
-        console.log("No data");
-        return [];
-      }
+    return new Promise((resolve, reject) => {
+      get_CO2_overtime("random_id", (data) => {
+        if (data) {
+          console.log(data);
+          resolve(data);
+        } else {
+          console.log("No data");
+          resolve([]);
+        }
+      });
     });
   }
 
