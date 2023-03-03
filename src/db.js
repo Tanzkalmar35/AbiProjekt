@@ -1,16 +1,17 @@
 import { initializeApp } from "firebase/app";
 import "firebase/app";
 
-import { getDatabase, ref, set, update, onValue  } from "firebase/database";
+import { getDatabase, ref, set, update, onValue } from "firebase/database";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyB0PjT0hCV-9QpmwxNeWz0QZwdh4iPdYQQ",
   authDomain: "meister-mimi.firebaseapp.com",
-  databaseURL: "https://meister-mimi-default-rtdb.europe-west1.firebasedatabase.app",
+  databaseURL:
+    "https://meister-mimi-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "meister-mimi",
   storageBucket: "meister-mimi.appspot.com",
   messagingSenderId: "876451638333",
-  appId: "1:876451638333:web:2097cc532d2234434f4e54"
+  appId: "1:876451638333:web:2097cc532d2234434f4e54",
 };
 
 // Initialize Firebase
@@ -159,17 +160,14 @@ const add_data_overall_vorlage = () => {
 };
 //Basic data
 const data = {
-  H20:  Math.random() * (0.02 - 0.01) + 0.02,
+  H20: Math.random() * (0.02 - 0.01) + 0.02,
 
-  CO2:  Math.random() * (0.0005 - 0.0003) + 0.0005,
+  CO2: Math.random() * (0.0005 - 0.0003) + 0.0005,
 
   O2: 0.2,
 
-  N2:  Math.random() * (0.80 - 0.65) + 0.80,
+  N2: Math.random() * (0.8 - 0.65) + 0.8,
 };
-
-
-
 
 //Adds the vorlage
 export function add_vorlage() {
@@ -227,32 +225,25 @@ export function get_current_data(randomId, callback) {
   const starCountRef = ref(db, "Arduino/devices/" + randomId + "/current_data");
   onValue(starCountRef, (snapshot) => {
     let data = snapshot.val();
-    
+
     let current_data = [data.O2, data.N2, data.H20, data.CO2 * 100];
     callback(current_data);
   });
 }
 
-export function get_CO2_overtime(random_id, callback){
+export function get_CO2_overtime(random_id, callback) {
+  let statref = ref(db, "/Arduino/devices/random_id/co2_overtime");
+  
+  let data = [];
 
-  let statref = ref(db,"/Arduino/devices/random_id/co2_overtime" );
-  onValue(statref, (snapshot) => {
+  
     
-    let data = snapshot.val();
-    data.forEach(element => {
-      console.log(element)
-      
+    onValue(statref , (snapshot) => {
+      let ann = snapshot.val();
+      data.push(ann.First, ann.Second, ann.Third, ann.Fourth, ann.Fifth );
     });
-    callback(data);
-    
-    
-  })
-  statref = ref(db,"/Arduino/devices/random_id/co2_overtime/1" );
-  onValue(statref, (snapshot) => {
-    let cum = snapshot.val();
-    console.log(cum);
-  })
+  
 
+  console.log(data);
+  callback(data);
 }
-
-

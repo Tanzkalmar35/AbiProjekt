@@ -3,6 +3,7 @@ import Line_chart from "../diagramm_components/line/line_chart";
 import { useState } from "react";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 import { get_CO2_overtime } from "../db";
+import { async } from "@firebase/util";
 
 function Co2_history_chart() {
   chartjs.register(ArcElement, Tooltip, Legend);
@@ -57,8 +58,9 @@ function Co2_history_chart() {
 
   setTimeout(() => {
     setTime(get_time);
-    setCurrentData(get_Data());
-    console.log("Current data" + current_data);
+    let sss = get_Data;
+    setCurrentData(sss);
+    console.log("Current data: " + current_data);
     setChart({
       labels: time,
       datasets: [
@@ -75,7 +77,7 @@ function Co2_history_chart() {
 
   function get_Data() {
     console.log("reading data");
-    get_CO2_overtime("random_id", (data) => {
+    get_CO2_overtime("random_id",  async (data) => {
       if (data) {
         console.log(data);
         return [...data];
