@@ -32,7 +32,7 @@ function Co2_history_chart() {
           callbacks: {
             label: (context) => {
               console.log("Howerd");
-              return "CO2 Percentage:" +  context.raw + "%";
+              return "CO2 Percentage:" +  (context.raw) + "%";
             },
           },
         },
@@ -58,8 +58,8 @@ function Co2_history_chart() {
 
   setTimeout(async () => {
     setTime(get_time);
-    let sss = await get_Data();
-    setCurrentData(sss);
+    let new_data = await get_Data();
+    setCurrentData(new_data);
     console.log("Current data: " + current_data);
     setChart({
       labels: time,

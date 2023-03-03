@@ -239,8 +239,8 @@ export function  get_CO2_overtime(random_id, callback) {
   
     
     onValue(statref , (snapshot) => {
-      let ann = snapshot.val();
-      data.push(ann.First, ann.Second, ann.Third, ann.Fourth, ann.Fifth );
+      let history = snapshot.val();
+      data.push(history.First, history.Second, history.Third, history.Fourth, history.Fifth );
     });
   
 

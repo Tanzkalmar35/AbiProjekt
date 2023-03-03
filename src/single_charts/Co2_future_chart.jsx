@@ -8,7 +8,7 @@ import { future_values } from "./Funticons_for_charts";
 function Co2_future_chart() {
   chartjs.register(ArcElement, Tooltip, Legend);
 
-  const [Data, setData] = React.useState([0.06, 0.06, 0.04, 0.04, 0.05]);
+  const [Data, setData] = React.useState([0.0006, 0.0006, 0.0004, 0.0004, 0.000412]);
 
   const [ChartLabels, setChartLabels] = React.useState(["1", "2", "3", "4", "5"]);
 
@@ -44,7 +44,7 @@ function Co2_future_chart() {
 
   setTimeout(() => {
     setData(future_values(Data[3], Data[4]));
-    setChartDataSet(
+    
       setChartDataSet({
         labels: ChartLabels,
         datasets: [
@@ -55,7 +55,7 @@ function Co2_future_chart() {
           },
         ],
       })
-    );
+    
   }, 10000);
 
   return (
