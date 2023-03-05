@@ -31,7 +31,7 @@ function Co2_history_chart() {
         tooltip: {
           callbacks: {
             label: (context) => {
-              console.log("Howerd");
+              
               return "CO2 Percentage:" +  (context.raw) + "%";
             },
           },
@@ -49,6 +49,11 @@ function Co2_history_chart() {
         //Those are the points in the chart
         data: current_data,
         label: "CO2 Hisotry chart",
+       
+        borderColor: "#0000ff",
+        borderWidth: 3,
+
+
       },
     ],
     options: options_for_chart,
@@ -67,6 +72,8 @@ function Co2_history_chart() {
         {
           data: current_data,
           label: "CO2 Hisotry chart",
+          borderColor: "#0000ff",
+        borderWidth: 3,
         },
       ],
     });
