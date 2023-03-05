@@ -13,7 +13,8 @@ const Co2 = () => {
         <p>CO2 Page</p>
       </div>
       
-      <div className="flex justify-center">
+      <div className="flex justify-center ">
+       <Co2_history_chart></Co2_history_chart>
        <Co2_future_chart></Co2_future_chart>
      
         
