@@ -78,7 +78,7 @@ function Co2_history_chart() {
       ],
     });
     console.log("CO2 Hisotry chart updated");
-  }, 10000);
+  }, 5000);
 
   //This function is deleting the first element of the array and adds a new one at the end
 
