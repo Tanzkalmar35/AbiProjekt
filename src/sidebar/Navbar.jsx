@@ -47,11 +47,12 @@ const Navbar = () => {
             onClick={() => setNav(!nav)}
           />
         </div>
+        
         <div className="flex justify-center">
           {nav ? (
             <>
-              <p id="sidebarUserName" className="text-c_nav_txt mt-5 text-xl">
-                No Name
+              <p id="sidebarUserName" className="text-c_nav_txt mt-5 text-xl" style={{color: "white"}}>
+               P5 Projekt
               </p>
             </>
           ) : undefined}
