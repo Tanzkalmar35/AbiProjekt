@@ -3,14 +3,15 @@ import { useState } from "react";
 import style from "./Navbar.module.scss";
 
 /* importing the icons */
-import { MdOutlineDashboard, MdOutlineWaterDrop } from "react-icons/md";
+import { MdOutlineDashboard } from "react-icons/md";
 import { TbTemperature } from "react-icons/tb";
 import { WiHumidity } from "react-icons/wi";
 import { RiWindyFill, RiSettings4Line } from "react-icons/ri";
 import { AiOutlineCloud } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { SlOptions } from "react-icons/sl";
-
+import {BiLeaf} from "react-icons/bi";
+import {DiDocker } from "react-icons/di";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
@@ -42,8 +43,8 @@ const Navbar = () => {
     >
       <nav className={nav ? undefined : style.nav_small}>
         <div className={style.logo}>
-          <CgProfile
-            className="scale-90 text-c_nav_not_active"
+          <DiDocker
+            className="scale-90 text-c_nav_not_active text-purple-600"
             onClick={() => setNav(!nav)}
           />
         </div>
@@ -77,7 +78,7 @@ const Navbar = () => {
 
           <NavUrl
             url="/o2"
-            icon={<MdOutlineWaterDrop />}
+            icon={<BiLeaf/>}
             description="O2"
           ></NavUrl>
 
