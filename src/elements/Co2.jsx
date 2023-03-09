@@ -10,7 +10,7 @@ const Co2 = () => {
   return (
     <div className="">
       <div className="text-5xl p-4  flex justify-center">
-      <p style={{color: 'white'}}>CO2 Page</p>
+      <p className="text-white">CO2 Page</p>
       </div>
 
 
