@@ -23,13 +23,13 @@ const App = () => {
 
   return (
     <>
-      <div className="flex overflow-hidden">
+      <div className="flex overflow-hidden ">
         <NavContext.Provider value={value}>
           <Navbar />
-          <Container
+          <Container 
             content={
               <Routes>
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard  />} />
                 <Route path="/co2" element={<Co2 />} />
                 <Route path="/o2" element={<O2 />} />
                 <Route path="/airquality" element={<AirQuality />} />

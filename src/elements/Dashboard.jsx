@@ -14,13 +14,11 @@ const Dashboard = () => {
   const [line_chrat_view, setline_chrat_view] = useState(false);
 
   return (
-    <div className="grid-cols-2 flex justify-between">
+    <div>
       {/*If trigger equals true the chart is viewed */}
-      <div className="text-7xl inline-flex  col-span-1">
-        <p className="justify-center text-center">Hellow</p>
-      </div>
       
-      <div className=" col-span-2  h-4/6 w-4/6">
+      
+      <div className="   h-3/6 w-3/6">
       <Donute_chart trigger={doughnut_chrat_view}></Donute_chart>
       </div>
     </div>
