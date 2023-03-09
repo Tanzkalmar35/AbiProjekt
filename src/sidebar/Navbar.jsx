@@ -51,7 +51,7 @@ const Navbar = () => {
         <div className="flex justify-center">
           {nav ? (
             <>
-              <p id="sidebarUserName" className="text-c_nav_txt mt-5 text-xl" style={{color: "white"}}>
+              <p id="sidebarUserName" className="text-c_nav_txt mt-5 text-xl text-purple-500" >
                P5 Projekt
               </p>
             </>
