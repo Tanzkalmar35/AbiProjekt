@@ -85,6 +85,8 @@ const Donute_chart = ({ trigger }) => {
   //Those are the options for the chart
   const [chart_option, setChartOptions] = useState({
     options: {
+      
+      
       plugins: {
         legend: {
           //Shows the legend and its styles
@@ -138,12 +140,11 @@ const Donute_chart = ({ trigger }) => {
 
   //returns the chart object if trigger is true else returns null
   return trigger ? (
-    <div className="w-screen h-screen flex justify-center ">
+    <div className=" flex justify-center  h-full w-full">
       <Doughnut
         data={data}
         options={chart_option.options}
-        height="100"
-        width="100"
+        
       />
     </div>
   ) : null;
