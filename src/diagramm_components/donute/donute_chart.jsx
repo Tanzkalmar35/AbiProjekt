@@ -17,7 +17,7 @@ const Donute_chart = ({ trigger }) => {
   O2 = 0.20
   CO2 = 0.0004
   */
-  let CO2 = 0.0004;
+  let CO2 = 0.0005;
   let O2 = 0.1;
   let H20 = 0.1;
   let N2 = 0.78;
@@ -98,7 +98,8 @@ const Donute_chart = ({ trigger }) => {
             label: (context) => {
               
               if (context.label == "CO2") {
-                return CO2 * 100 + "%";
+                console.log(context.raw);
+                return context.raw + "%";
               } else {
                 return context.parsed * 100 + "%";
               }

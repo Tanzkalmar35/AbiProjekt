@@ -226,7 +226,7 @@ export function get_current_data(randomId, callback) {
   onValue(starCountRef, (snapshot) => {
     let data = snapshot.val();
 
-    let current_data = [data.O2, data.N2, data.H20, data.CO2 * 100];
+    let current_data = [data.O2, data.N2, data.H20, data.CO2];
     callback(current_data);
   });
 }
