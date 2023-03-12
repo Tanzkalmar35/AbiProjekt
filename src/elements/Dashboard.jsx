@@ -17,8 +17,7 @@ const Dashboard = () => {
     <div>
       {/*If trigger equals true the chart is viewed */}
       <Donute_chart trigger={doughnut_chrat_view}></Donute_chart>
-      <Bar_chart trigger={bar_chrat_view}></Bar_chart>
-      <Line_chart trigger={line_chrat_view}></Line_chart>
+      
     </div>
   );
 }
