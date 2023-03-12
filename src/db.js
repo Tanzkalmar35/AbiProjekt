@@ -226,7 +226,7 @@ export function get_current_data(randomId, callback) {
   onValue(starCountRef, (snapshot) => {
     let data = snapshot.val();
 
-    let current_data = [data.O2, data.N2, data.H20 / 1000, data.CO2];
+    let current_data = [data.O2, data.N2, data.H20, data.CO2];
     callback(current_data);
   });
 }
@@ -268,19 +268,5 @@ export function future_values() {
     results.push(test);
   }
   return results;
-}
-
-export function calculate( humidity , temperature  ){
-
-  let saturationVaporPressure = 610.78 * Math.exp((17.27 * temperature) / (temperature + 237.3));
-
-  // Actual vapor pressure
-  let actualVaporPressure = (humidity / 100) * saturationVaporPressure;
-  
-  // Relative humidity as a percentage
-  let relativeHumidity = (actualVaporPressure / saturationVaporPressure) * 100;
-
-  return relativeHumidity.toFixed(2);
-  
 }
 
