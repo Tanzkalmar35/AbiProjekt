@@ -3,21 +3,24 @@ import { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 //Alway import this else it wont work
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
-import { add_vorlage, new_data_overall, get_current_data, get_CO2_overtime } from "../../db";
+import {
+  add_vorlage,
+  new_data_overall,
+  get_current_data,
+  get_CO2_overtime,
+} from "../../db";
 
 const Donute_chart = ({ trigger }) => {
   //Dont rly understand but is needed for better styles
   chartjs.register(ArcElement, Tooltip, Legend);
-  
-  
-  
+
   /*
   Normal levels
   N2 = 0.78
   O2 = 0.20
   CO2 = 0.0004
   */
-  let CO2 = 0.0004;
+  let CO2 = 0.0005;
   let O2 = 0.1;
   let H20 = 0.1;
   let N2 = 0.78;
@@ -49,7 +52,6 @@ const Donute_chart = ({ trigger }) => {
     get_current_data("random_id", (data) => {
       if (data) {
         setCurrentData(data);
-        
       } else {
         setCurrentData([O2, N2, H20, CO2]);
         console.log("No data");
@@ -80,8 +82,6 @@ const Donute_chart = ({ trigger }) => {
     });
   }, 1000);
 
-  
-
   //Those are the options for the chart
   const [chart_option, setChartOptions] = useState({
     options: {
@@ -89,16 +89,18 @@ const Donute_chart = ({ trigger }) => {
         legend: {
           //Shows the legend and its styles
           display: true,
-          position: "left",
+          position: "right",
           labels: { padding: 25 },
         },
         //Tooltips very annoying to implement
         tooltip: {
           callbacks: {
             label: (context) => {
-              
               if (context.label == "CO2") {
-                return CO2 * 100 + "%";
+                console.log(context.raw);
+                return context.raw + "%";
+              } else if (context.label == "H2O") {
+                return context.raw + "%";
               } else {
                 return context.parsed * 100 + "%";
               }

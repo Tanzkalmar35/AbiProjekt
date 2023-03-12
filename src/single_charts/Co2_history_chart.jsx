@@ -87,7 +87,7 @@ function Co2_history_chart() {
     return new Promise((resolve, reject) => {
       get_CO2_overtime("random_id", (data) => {
         if (data) {
-          console.log(data);
+          
           resolve(data);
         } else {
           console.log("No data");

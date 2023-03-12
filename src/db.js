@@ -226,24 +226,61 @@ export function get_current_data(randomId, callback) {
   onValue(starCountRef, (snapshot) => {
     let data = snapshot.val();
 
-    let current_data = [data.O2, data.N2, data.H20, data.CO2 * 100];
+    let current_data = [data.O2, data.N2, data.H20 / 1000, data.CO2];
     callback(current_data);
   });
 }
 
 export function  get_CO2_overtime(random_id, callback) {
-  let statref = ref(db, "/Arduino/devices/random_id/co2_overtime");
+  let statref = ref(db, "/Arduino/devices/random_id/current_data/CO2");
   
   let data = [];
 
   
     
     onValue(statref , (snapshot) => {
-      let history = snapshot.val();
-      data.push(history.First, history.Second, history.Third, history.Fourth, history.Fifth );
+      
+      data.push(snapshot.val(), snapshot.val(),snapshot.val(),snapshot.val(),snapshot.val());
     });
   
 
   console.log(data);
   callback(data);
 }
+
+export function future_values() {
+  
+  let statref = ref(db, "/Arduino/devices/random_id/current_data/CO2");
+  let CO;
+  onValue(statref, (snapshot) => {
+
+    CO = snapshot.val();
+  })
+  
+  const neededValues = 3;
+
+
+  const rise =  CO - 0.004;
+  let results = [];
+  results.push(0.004, CO);
+  for (let i = 0; i < neededValues; i++) {
+    let test = results[1 + i] + rise;
+    results.push(test);
+  }
+  return results;
+}
+
+export function calculate( humidity , temperature  ){
+
+  let saturationVaporPressure = 610.78 * Math.exp((17.27 * temperature) / (temperature + 237.3));
+
+  // Actual vapor pressure
+  let actualVaporPressure = (humidity / 100) * saturationVaporPressure;
+  
+  // Relative humidity as a percentage
+  let relativeHumidity = (actualVaporPressure / saturationVaporPressure) * 100;
+
+  return relativeHumidity.toFixed(2);
+  
+}
+
