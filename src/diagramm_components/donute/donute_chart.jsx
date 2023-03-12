@@ -101,7 +101,7 @@ const Donute_chart = ({ trigger }) => {
                 console.log(context.raw);
                 return context.raw + "%";
               } else {
-                return context.parsed * 100 + "%";
+                return context.parsed + "%";
               }
             },
           },

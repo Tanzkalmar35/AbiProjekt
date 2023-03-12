@@ -2,13 +2,13 @@ import React from "react";
 import Line_chart from "../diagramm_components/line/line_chart";
 import { useState } from "react";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
-import { get_CO2_overtime } from "../db";
-import { future_values } from "./Funticons_for_charts";
+import { get_CO2_overtime, future_values } from "../db";
+
 
 function Co2_future_chart() {
   chartjs.register(ArcElement, Tooltip, Legend);
 
-  const [Data, setData] = React.useState([0.0006, 0.0006, 0.0004, 0.0004, 0.000412]);
+  const [Data, setData] = React.useState([]);
 
   const [ChartLabels, setChartLabels] = React.useState(["1", "2", "3", "4", "5"]);
 
@@ -45,7 +45,7 @@ function Co2_future_chart() {
   };
 
   setTimeout(() => {
-    setData(future_values(Data[3], Data[4]));
+    setData(future_values());
     
       setChartDataSet({
         labels: ChartLabels,
