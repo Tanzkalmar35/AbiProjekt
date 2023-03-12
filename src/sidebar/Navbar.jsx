@@ -10,7 +10,6 @@ import { RiWindyFill, RiSettings4Line } from "react-icons/ri";
 import { AiOutlineCloud } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { SlOptions } from "react-icons/sl";
-import {BiLeaf} from "react-icons/bi";
 import {DiDocker } from "react-icons/di";
 import { NavLink } from "react-router-dom";
 
@@ -78,7 +77,7 @@ const Navbar = () => {
 
           <NavUrl
             url="/o2"
-            icon={<BiLeaf/>}
+          
             description="O2"
           ></NavUrl>
 
