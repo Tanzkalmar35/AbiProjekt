@@ -4,6 +4,7 @@ import { Doughnut } from "react-chartjs-2";
 //Alway import this else it wont work
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 import { add_vorlage, new_data_overall, get_current_data, get_CO2_overtime } from "../../db";
+import Table from "../../single_charts/Table";
 
 const Donute_chart = ({ trigger }) => {
   //Dont rly understand but is needed for better styles
@@ -142,12 +143,7 @@ const Donute_chart = ({ trigger }) => {
   return trigger ? (
     <div className=" grid-cols-2 flex items-center   ">
       <div className="text-6xl col-span-1 p-80">
-        <ul>
-          <li>Test</li>
-          <li>Test</li>
-          <li>Test</li>
-          <li>Test</li>
-        </ul>
+        <Table Data={current_data}></Table>
       </div>
       <Doughnut
         data={data}
