@@ -143,10 +143,11 @@ const Donute_chart = ({ trigger }) => {
     <div className=" grid-cols-2 flex items-center   ">
       <div className="text-6xl col-span-1 p-80">
         <ul>
-          <li>Test</li>
-          <li>Test</li>
-          <li>Test</li>
-          <li>Test</li>
+          <li>{CO2}</li>
+          <li>{H20}</li>
+          <li>{N2}</li>
+          <li>{O2}</li>
+          
         </ul>
       </div>
       <Doughnut
