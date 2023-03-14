@@ -20,7 +20,7 @@ const Donute_chart = ({ trigger }) => {
   */
   let CO2 = 0.0005;
   let O2 = 0.1;
-  let H20 = 0.1;
+  let RH = 0.1;
   let N2 = 0.78;
 
   //Draws the Text in the middel can't be changed (later maybe but right now its just "AIR QUALITY CHART")
@@ -52,7 +52,7 @@ const Donute_chart = ({ trigger }) => {
         setCurrentData(data);
         
       } else {
-        setCurrentData([O2, N2, H20, CO2]);
+        setCurrentData([O2, N2, RH, CO2]);
         console.log("No data");
       }
     });
@@ -64,7 +64,7 @@ const Donute_chart = ({ trigger }) => {
     setData({
       //this will be late read from the database
       type: "doughnut",
-      labels: ["O2", "N2", "H2O", "CO2"],
+      labels: ["O2", "N2", "RH", "CO2"],
       datasets: [
         {
           data: current_data,

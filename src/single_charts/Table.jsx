@@ -8,7 +8,7 @@ export default function Table({ Data }) {
   const [H2O_level, setH2O_level] = React.useState("");
 
   React.useEffect(() => {
-    if (Data[0] > 0.235 || Data[0] < 0.195) {
+    if (Data[0] > 19.5 && Data[0] < 23.5) {
       setO2_level("Good");
     } else {
       setO2_level("Bad");
@@ -16,7 +16,7 @@ export default function Table({ Data }) {
   }, [Data[0]]);
 
   React.useEffect(() => {
-    if (Data[1] > 0.77 || Data[1] < 0.8) {
+    if (Data[1] > 77 && Data[1] < 80) {
       setN2_level("Good");
     } else {
       setN2_level("Bad");
@@ -24,14 +24,14 @@ export default function Table({ Data }) {
   }, [Data[1]]);
 
   React.useEffect(() => {
-    if (Data[3] > 0.235 || Data[2] < 0.195) {
+    if (Data[2] > 30 && Data[2] < 60) {
       setH2O_level("Good");
     } else {
       setH2O_level("Bad");
     }
   }, [Data[2]]);
   React.useEffect(() => {
-    if (Data[2] > 0.0 || Data[3] < 0.005) {
+    if (Data[3] > 0.0 && Data[3] < 5) {
       setCO2_level("Good");
     } else {
       setCO2_level("Bad");
@@ -52,7 +52,7 @@ export default function Table({ Data }) {
         <li>O2 :</li>
         <li>N2 :</li>
         <li>CO2: </li>
-        <li>H2O: </li>
+        <li>RH: </li>
       </ul>
       <ul className="col-2">
         <li>{Data[0]}%</li>

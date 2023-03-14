@@ -229,7 +229,7 @@ export function get_current_data(randomId, callback) {
     let current_data = [
       data.O2,
       data.N2,
-      calculate(data.Temp, data.H20),
+      data.H20,
       data.CO2 * 1000,
     ];
     callback(current_data);
