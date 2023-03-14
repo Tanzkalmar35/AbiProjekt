@@ -102,7 +102,7 @@ const Donute_chart = ({ trigger }) => {
               
               if (context.label == "CO2") {
                 
-                return context.raw  + "%";
+                return (context.raw).toFixed(2)  + "%";
               } else {
                 return context.parsed + "%";
               }
