@@ -102,7 +102,7 @@ const Donute_chart = ({ trigger }) => {
               
               if (context.label == "CO2") {
                 console.log(context.raw);
-                return context.raw + "%";
+                return context.raw / 10 + "%";
               } else {
                 return context.parsed + "%";
               }
@@ -142,7 +142,7 @@ const Donute_chart = ({ trigger }) => {
   //returns the chart object if trigger is true else returns null
   return trigger ? (
     <div className=" grid-cols-2 flex items-center   ">
-      <div className="text-6xl col-span-1 p-80">
+      <div className="text-6xl col-span-1 ">
         <Table Data={current_data}></Table>
       </div>
       <Doughnut
