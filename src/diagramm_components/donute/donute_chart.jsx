@@ -23,26 +23,10 @@ const Donute_chart = ({ trigger }) => {
   let RH = 0.1;
   let N2 = 0.78;
 
-  //Draws the Text in the middel can't be changed (later maybe but right now its just "AIR QUALITY CHART")
-  const textCenter = {
-    id: "textCenter",
-    beforeDatasetsDraw(chart, args, pluginOptions) {
-      const { ctx, data } = chart;
-      ctx.save();
-      ctx.font = "bolder 30px sans-serif";
-      ctx.fillStyle = "black";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText(
-        "AIR QUALITY CHART",
-        chart.getDatasetMeta(0).data[0].x,
-        chart.getDatasetMeta(0).data[0].y
-      );
-    },
-  };
+  
 
   //This is the const for storing the current data its a state so it can be updated
-  const [current_data, setCurrentData] = useState([]);
+  const [current_data, setCurrentData] = useState();
 
   /*This data is using the get_current_data function 
   to get the current data and if there is no it will use the normal data*/
@@ -135,7 +119,7 @@ const Donute_chart = ({ trigger }) => {
   });
 
   //returns the chart object if trigger is true else returns null
-  return trigger ? (
+  return current_data ? (
     <div className=" grid-cols-2 flex items-center   ">
       <div className="text-6xl col-span-1 ">
         
@@ -147,7 +131,7 @@ const Donute_chart = ({ trigger }) => {
         className="col-span-2"
       />
     </div>
-  ) : null;
+  ) : (<h1 className="text-5xl text-purple-600">Loading</h1>);
 };
 
 export default Donute_chart;

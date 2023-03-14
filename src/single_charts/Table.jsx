@@ -1,5 +1,5 @@
 import React from "react";
-import { check } from "./Funticons_for_charts";
+import { check, rounded } from "./Funticons_for_charts";
 
 export default function Table({ Data }) {
   /*
@@ -38,20 +38,14 @@ export default function Table({ Data }) {
     }
   }, [Data[2]]);
   React.useEffect(() => {
-    if (Data[3] > 0.0 && Data[3] < 5) {
+    if (Data[3] > 0 && Data[3] < 5) {
       setCO2_level("Good");
     } else {
       setCO2_level("Bad");
     }
   }, [Data[3]]);
 
-  function rounded(val) {
-    if (!val) {
-      return null;
-    } else {
-      return val.toFixed(2);
-    }
-  }
+
 
   return (
     <div className=" grid-cols-3 flex p-40 ">
