@@ -2,6 +2,13 @@ import React from "react";
 import { check } from "./Funticons_for_charts";
 
 export default function Table({ Data }) {
+  /*
+  Data[0] = O2
+  Data[1] = N2
+  Data[2] = H20
+  Data[3] = CO2
+  */
+
   const [o2_level, setO2_level] = React.useState("");
   const [N2_level, setN2_level] = React.useState("");
   const [Co2_level, setCO2_level] = React.useState("");
