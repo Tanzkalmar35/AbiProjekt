@@ -7,7 +7,7 @@ import { async } from "@firebase/util";
 
 function Co2_history_chart() {
   chartjs.register(ArcElement, Tooltip, Legend);
-  
+
   //Alway get the current time as an array
   const [time, setTime] = useState(get_time);
 
@@ -31,8 +31,7 @@ function Co2_history_chart() {
         tooltip: {
           callbacks: {
             label: (context) => {
-              
-              return "CO2 Percentage:" +  (context.raw) + "%";
+              return "CO2 Percentage:" + context.raw + "%";
             },
           },
         },
@@ -49,11 +48,9 @@ function Co2_history_chart() {
         //Those are the points in the chart
         data: current_data,
         label: "CO2 Hisotry chart",
-       
+
         borderColor: "#0000ff",
         borderWidth: 3,
-
-
       },
     ],
     options: options_for_chart,
@@ -65,7 +62,7 @@ function Co2_history_chart() {
     setTime(get_time);
     let new_data = await get_Data();
     setCurrentData(new_data);
-    console.log("Current data: " + current_data);
+    
     setChart({
       labels: time,
       datasets: [
@@ -73,21 +70,20 @@ function Co2_history_chart() {
           data: current_data,
           label: "CO2 Hisotry chart",
           borderColor: "#0000ff",
-        borderWidth: 3,
+          borderWidth: 3,
         },
       ],
     });
-    console.log("CO2 Hisotry chart updated");
+    
   }, 5000);
 
   //This function is deleting the first element of the array and adds a new one at the end
 
   function get_Data() {
-    console.log("reading data");
+    
     return new Promise((resolve, reject) => {
       get_CO2_overtime("random_id", (data) => {
         if (data) {
-          
           resolve(data);
         } else {
           console.log("No data");

@@ -267,7 +267,7 @@ export function get_CO2_overtime(random_id, callback) {
     );
   });
 
-  console.log(data);
+ 
   callback(data);
 }
 
@@ -275,14 +275,14 @@ export function future_values() {
   let statref = ref(db, "/Arduino/devices/random_id/current_data/CO2");
   let CO;
   onValue(statref, (snapshot) => {
-    CO = snapshot.val();
+    CO = snapshot.val() * 1000;
   });
 
   const neededValues = 3;
 
-  const rise = CO - 0.004;
+  const rise = CO - (CO - 0.01);
   let results = [];
-  results.push(0.004, CO);
+  results.push((CO - 0.01), CO);
   for (let i = 0; i < neededValues; i++) {
     let test = results[1 + i] + rise;
     results.push(test);
