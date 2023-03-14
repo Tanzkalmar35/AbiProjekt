@@ -102,19 +102,14 @@ const Donute_chart = ({ trigger }) => {
               
               if (context.label == "CO2") {
                 console.log(context.raw);
-                return context.raw / 10 + "%";
+                return context.raw  + "%";
               } else {
                 return context.parsed + "%";
               }
             },
           },
         },
-        //Just the basic title will be changed in the future
-        title: {
-          display: true,
-          text: "H2O : 0.1 | O2 : 0.1 | N2 : 0.78 | CO2 < 0.1",
-          font: { size: 25 },
-        },
+        
       },
     },
   });

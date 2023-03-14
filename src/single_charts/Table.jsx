@@ -6,7 +6,7 @@ export default function Table({ Data }) {
   const [N2_level, setN2_level] = React.useState("");
   const [Co2_level, setCO2_level] = React.useState("");
   const [H2O_level, setH2O_level] = React.useState("");
-
+  
   React.useEffect(() => {
     if (Data[0] > 0.235 || Data[0] < 0.195) {
       setO2_level("Good");
@@ -36,24 +36,31 @@ export default function Table({ Data }) {
     } else {
       setCO2_level("Bad");
     }
-    if(Data[3]){
-      Data[3] = Number(Data[3]).toFixed(4);
-    }
+    
   }, [Data[3]]);
+
+  function rounded(val){
+    if(!val){
+      return 0;
+    }else{
+      return val.toFixed(2);
+    }
+
+  }
 
   return (
     <div className=" grid-cols-3 flex p-40 ">
       <ul className="col-1 pr-10">
-        <li>O2: </li>
-        <li>N2: </li>
+        <li>O2  :</li>
+        <li>N2  :</li>
         <li>CO2: </li>
         <li>H2O: </li>
       </ul>
       <ul className="col-2">
-        <li>{Data[0]}</li>
-        <li>{Data[1]}</li>
-        <li>{Data[3]}</li>
-        <li>{Data[2]}</li>
+        <li>{Data[0]}%</li>
+        <li>{Data[1]}%</li>
+        <li>{rounded(Data[3])}%</li>
+        <li>{Data[2]}%</li>
       </ul>
       <ul className="pl-10 col-3">
         <li className={check(o2_level)}>{o2_level}</li>
