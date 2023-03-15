@@ -4,6 +4,7 @@ import { Doughnut } from "react-chartjs-2";
 //Alway import this else it wont work
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 import { add_vorlage, new_data_overall, get_current_data, get_CO2_overtime } from "../../db";
+import Table from "../../single_charts/Table";
 
 const Donute_chart = ({ trigger }) => {
   //Dont rly understand but is needed for better styles
@@ -19,29 +20,13 @@ const Donute_chart = ({ trigger }) => {
   */
   let CO2 = 0.0005;
   let O2 = 0.1;
-  let H20 = 0.1;
+  let RH = 0.1;
   let N2 = 0.78;
 
-  //Draws the Text in the middel can't be changed (later maybe but right now its just "AIR QUALITY CHART")
-  const textCenter = {
-    id: "textCenter",
-    beforeDatasetsDraw(chart, args, pluginOptions) {
-      const { ctx, data } = chart;
-      ctx.save();
-      ctx.font = "bolder 30px sans-serif";
-      ctx.fillStyle = "black";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText(
-        "AIR QUALITY CHART",
-        chart.getDatasetMeta(0).data[0].x,
-        chart.getDatasetMeta(0).data[0].y
-      );
-    },
-  };
+  
 
   //This is the const for storing the current data its a state so it can be updated
-  const [current_data, setCurrentData] = useState([]);
+  const [current_data, setCurrentData] = useState();
 
   /*This data is using the get_current_data function 
   to get the current data and if there is no it will use the normal data*/
@@ -51,7 +36,7 @@ const Donute_chart = ({ trigger }) => {
         setCurrentData(data);
         
       } else {
-        setCurrentData([O2, N2, H20, CO2]);
+        setCurrentData([O2, N2, RH, CO2]);
         console.log("No data");
       }
     });
@@ -63,7 +48,7 @@ const Donute_chart = ({ trigger }) => {
     setData({
       //this will be late read from the database
       type: "doughnut",
-      labels: ["O2", "N2", "H2O", "CO2"],
+      labels: ["O2", "N2", "RH", "CO2"],
       datasets: [
         {
           data: current_data,
@@ -100,20 +85,15 @@ const Donute_chart = ({ trigger }) => {
             label: (context) => {
               
               if (context.label == "CO2") {
-                console.log(context.raw);
-                return context.raw + "%";
+                
+                return (context.raw).toFixed(2)  + "%";
               } else {
                 return context.parsed + "%";
               }
             },
           },
         },
-        //Just the basic title will be changed in the future
-        title: {
-          display: true,
-          text: "H2O : 0.1 | O2 : 0.1 | N2 : 0.78 | CO2 < 0.1",
-          font: { size: 25 },
-        },
+        
       },
     },
   });
@@ -139,8 +119,9 @@ const Donute_chart = ({ trigger }) => {
   });
 
   //returns the chart object if trigger is true else returns null
-  return trigger ? (
+  return current_data ? (
     <div className=" grid-cols-2 flex items-center   ">
+<<<<<<< HEAD
       <div className="text-6xl col-span-1 p-80">
         <ul>
           <li>{CO2}</li>
@@ -149,6 +130,11 @@ const Donute_chart = ({ trigger }) => {
           <li>{O2}</li>
           
         </ul>
+=======
+      <div className="text-6xl col-span-1 ">
+        
+        <Table Data={current_data}></Table>
+>>>>>>> 161eb08c474a289108c1cbde36eb65bbaf7f3d31
       </div>
       <Doughnut
         data={data}
@@ -156,7 +142,7 @@ const Donute_chart = ({ trigger }) => {
         className="col-span-2"
       />
     </div>
-  ) : null;
+  ) : (<h1 className="text-5xl text-purple-600">Loading</h1>);
 };
 
 export default Donute_chart;

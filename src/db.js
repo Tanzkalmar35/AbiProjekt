@@ -226,47 +226,66 @@ export function get_current_data(randomId, callback) {
   onValue(starCountRef, (snapshot) => {
     let data = snapshot.val();
 
-    let current_data = [data.O2, data.N2, data.H20 / 1000, data.CO2];
+    let current_data = [
+      data.O2,
+      data.N2,
+      data.H20,
+      data.CO2 * 1000,
+    ];
     callback(current_data);
   });
 }
 
-export function  get_CO2_overtime(random_id, callback) {
+function calculate(temp, rh) {
+  let a = 17.27;
+
+  let b = 237.7;
+  /*
+  The values for a and b are commonly used 
+  in the equation to calculate the dew point. 
+  These values come from the Magnus-Tetens approximation formula, 
+  which is commonly used in meteorology and weather forecasting.
+  */
+
+  let gamma = (a * temp) / (b + temp) + Math.log(rh / 100);
+  let dp = (b * gamma) / (a - gamma);
+  return dp.toFixed(2);
+}
+
+export function get_CO2_overtime(random_id, callback) {
   let statref = ref(db, "/Arduino/devices/random_id/current_data/CO2");
-  
+
   let data = [];
 
-  
-    
-    onValue(statref , (snapshot) => {
-      
-      data.push(snapshot.val(), snapshot.val(),snapshot.val(),snapshot.val(),snapshot.val());
-    });
-  
+  onValue(statref, (snapshot) => {
+    data.push(
+      snapshot.val(),
+      snapshot.val(),
+      snapshot.val(),
+      snapshot.val(),
+      snapshot.val()
+    );
+  });
 
-  console.log(data);
+ 
   callback(data);
 }
 
 export function future_values() {
-  
   let statref = ref(db, "/Arduino/devices/random_id/current_data/CO2");
   let CO;
   onValue(statref, (snapshot) => {
+    CO = snapshot.val() * 1000;
+  });
 
-    CO = snapshot.val();
-  })
-  
   const neededValues = 3;
 
-
-  const rise =  CO - 0.004;
+  const rise = CO - (CO - 0.01);
   let results = [];
-  results.push(0.004, CO);
+  results.push((CO - 0.01), CO);
   for (let i = 0; i < neededValues; i++) {
     let test = results[1 + i] + rise;
     results.push(test);
   }
   return results;
 }
-

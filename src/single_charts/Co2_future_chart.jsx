@@ -36,7 +36,7 @@ function Co2_future_chart() {
         tooltip: {
           callbacks: {
             label: (context) => {
-              return "Co2 percentage: " + context.raw + "%";
+              return "Co2 percentage: " + (context.raw).toFixed(2) + "%";
             },
           },
         },
@@ -60,7 +60,7 @@ function Co2_future_chart() {
         ],
       })
     
-  }, 10000);
+  }, 1000);
 
   return (
     <Line_chart
