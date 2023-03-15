@@ -125,6 +125,7 @@ const Donute_chart = ({ trigger }) => {
       <div className="text-6xl col-span-1 ">
         
         <Table Data={current_data}></Table>
+        <Table Data={current_data}></Table>
       </div>
       <Doughnut
         data={data}

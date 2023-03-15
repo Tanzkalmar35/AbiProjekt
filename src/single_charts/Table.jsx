@@ -48,20 +48,20 @@ export default function Table({ Data }) {
 
 
   return (
-    <div className=" grid-cols-3 flex p-40 ">
-      <ul className="col-1 pr-10">
-        <li>O2 :</li>
-        <li>N2 :</li>
-        <li>CO2: </li>
-        <li>RH: </li>
+    <div className=" grid-cols-3 flex justify-between m-40 ring-8 ring-white">
+      <ul className="col-1 pr-10 bg-blue-400">
+        <li className="bg-blue-400">O2 :</li>
+        <li className="bg-blue-400">N2 :</li>
+        <li className="bg-blue-400">CO2: </li>
+        <li className="bg-blue-400">RH: </li>
       </ul>
-      <ul className="col-2">
-        <li>{Data[0]}%</li>
-        <li>{Data[1]}%</li>
-        <li>{rounded(Data[3])}%</li>
-        <li>{Data[2]}%</li>
+      <ul className="col-2 bg-blue-500 ring-4 ring-white pr-5 pl-5">
+        <li className="bg-blue-500 rounded-b-3xl rounded-white">{Data[0]}%</li>
+        <li className="bg-blue-500">{Data[1]}%</li>
+        <li className="bg-blue-500">{rounded(Data[3])}%</li>
+        <li className="bg-blue-500">{Data[2]}%</li>
       </ul>
-      <ul className="pl-10 col-3">
+      <ul className=" col-3 ring-4 ring-white">
         <li className={check(o2_level)}>{o2_level}</li>
         <li className={check(N2_level)}>{N2_level}</li>
         <li className={check(Co2_level)}>{Co2_level}</li>
