@@ -121,20 +121,10 @@ const Donute_chart = ({ trigger }) => {
   //returns the chart object if trigger is true else returns null
   return current_data ? (
     <div className=" grid-cols-2 flex items-center   ">
-<<<<<<< HEAD
-      <div className="text-6xl col-span-1 p-80">
-        <ul>
-          <li>{CO2}</li>
-          <li>{H20}</li>
-          <li>{N2}</li>
-          <li>{O2}</li>
-          
-        </ul>
-=======
+      
       <div className="text-6xl col-span-1 ">
         
         <Table Data={current_data}></Table>
->>>>>>> 161eb08c474a289108c1cbde36eb65bbaf7f3d31
       </div>
       <Doughnut
         data={data}
