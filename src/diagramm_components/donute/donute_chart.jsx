@@ -5,6 +5,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 import { add_vorlage, new_data_overall, get_current_data, get_CO2_overtime } from "../../db";
 import Table from "../../single_charts/Table";
+import TableTempRH from "../../single_charts/TableTempRH";
 
 const Donute_chart = ({ trigger }) => {
   //Dont rly understand but is needed for better styles
@@ -36,7 +37,7 @@ const Donute_chart = ({ trigger }) => {
         setCurrentData(data);
         
       } else {
-        setCurrentData([O2, N2, RH, CO2]);
+        setCurrentData([O2, N2, CO2]);
         console.log("No data");
       }
     });
@@ -48,7 +49,7 @@ const Donute_chart = ({ trigger }) => {
     setData({
       //this will be late read from the database
       type: "doughnut",
-      labels: ["O2", "N2", "RH", "CO2"],
+      labels: ["O2", "N2", "CO2"],
       datasets: [
         {
           data: current_data,
@@ -56,7 +57,7 @@ const Donute_chart = ({ trigger }) => {
             "rgba(101, 147, 245)",
             "rgba(0, 0, 128)",
             "rgb(16 52 166)",
-            "rgb(0 49 80)",
+          
           ],
           borderColor: "black",
           hoverOffset: 20,
@@ -102,7 +103,7 @@ const Donute_chart = ({ trigger }) => {
   const [data, setData] = React.useState({
     //this will be late read from the database
     type: "doughnut",
-    labels: ["O2", "N2", "H2O", "CO2"],
+    labels: ["O2", "N2", "CO2"],
     datasets: [
       {
         data: current_data,
@@ -110,7 +111,7 @@ const Donute_chart = ({ trigger }) => {
           "rgba(101, 147, 245)",
           "rgba(0, 0, 128)",
           "rgb(16 52 166)",
-          "rgb(0 49 80)",
+          
         ],
         borderColor: "black",
         hoverOffset: 20,
@@ -125,7 +126,7 @@ const Donute_chart = ({ trigger }) => {
       <div className="text-6xl col-span-1 ">
         
         <Table Data={current_data}></Table>
-        <Table Data={current_data}></Table>
+        <TableTempRH Data={current_data}></TableTempRH>
       </div>
       <Doughnut
         data={data}
