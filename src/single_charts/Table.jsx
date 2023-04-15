@@ -49,13 +49,13 @@ export default function Table({ Data }) {
         <li className="bg-blue-400">CO2: </li>
       
       </ul>
-      <ul className="col-2 bg-blue-500 ring-4 ring-black pr-5 pl-5">
-        <li className="bg-blue-500 rounded-b-3xl rounded-white">{Data[0]}%</li>
+      <ul className="col-2 bg-blue-500 ring-4 ring-black pr-10 pl-10">
+        <li className="bg-blue-500 rounded-b-3xl rounded-white">{+Data[0]}%</li>
         <li className="bg-blue-500">{Data[1]}%</li>
         <li className="bg-blue-500">{rounded(Data[2])}%</li>
        
       </ul>
-      <ul className=" col-3 ring-4 ring-black">
+      <ul className=" col-3 ring-4  ring-black">
         <li className={check(o2_level)}>{o2_level}</li>
         <li className={check(N2_level)}>{N2_level}</li>
         <li className={check(Co2_level)}>{Co2_level}</li>
