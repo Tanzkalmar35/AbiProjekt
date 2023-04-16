@@ -1,4 +1,3 @@
-import { resolve } from "chart.js/dist/helpers/helpers.options";
 import { initializeApp } from "firebase/app";
 import "firebase/app";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
