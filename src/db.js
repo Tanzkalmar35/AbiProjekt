@@ -187,14 +187,15 @@ export async function get_AirQualtiy(callback) {
     onValue(statref, (snapshot) => {
 
       airQualtiy.push(snapshot.val())
+      airQualtiy.push(AirQualityCheck(airQualtiy));
 
     })
-    const airQualityStatus = AirQualityCheck(airQualtiy);
-    callback(airQualityStatus)
+    
+    callback(airQualtiy)
 }
 
 function AirQualityCheck(AirQuality) {
-  switch (AirQuality) {
+  switch (AirQuality[0]) {
     case 1:
       return "Good";
     case 2: 
