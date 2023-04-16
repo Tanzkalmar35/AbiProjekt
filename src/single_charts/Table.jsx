@@ -15,8 +15,15 @@ export default function Table({ Data }) {
   const [Co2_level, setCO2_level] = React.useState("");
   const [AirQuality, setAirQuality] = React.useState("");
 
-  setTimeout(() => {setAirQuality(get_AirQualtiy)}, 2000);
+  setTimeout(setAirQuality(AirQulitayGet), 2000);
   
+
+  async function  AirQulitayGet(){
+    return new Promise((resolve, reject) => {
+      get_AirQualtiy((data) => {if(data){resolve(data);}else{resolve("")}})
+
+    })
+  }
 
   React.useEffect(() => {
     if (Data[0] > 19.5 && Data[0] < 23.5) {
