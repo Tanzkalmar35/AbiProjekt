@@ -1,7 +1,7 @@
-import { resolve } from "chart.js/dist/helpers/helpers.options";
+
 import { initializeApp } from "firebase/app";
 import "firebase/app";
-import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
+
 
 
 import { getDatabase, ref, set, update, onValue } from "firebase/database";
@@ -33,7 +33,7 @@ const add_data_overall_vorlage = () => {
     time = `${hours}:${"0" + minutes}`;
   } else {
     time = `${hours}:${minutes}`;
-  }
+  } 
 
   return {
     [time]: {
