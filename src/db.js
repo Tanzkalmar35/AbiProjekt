@@ -1,5 +1,8 @@
+import { resolve } from "chart.js/dist/helpers/helpers.options";
 import { initializeApp } from "firebase/app";
 import "firebase/app";
+import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
+
 
 import { getDatabase, ref, set, update, onValue } from "firebase/database";
 // Your web app's Firebase configuration
@@ -18,122 +21,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 //is the blueprint for the Firebase structured data
-const blueprint = {
-  random_id: {
-    current_data: {
-      H20: 0.1,
 
-      CO2: 0.0004,
 
-      O2: 0.2,
-
-      N2: 0.78,
-    },
-
-    history: {
-      "Last-10-days": {
-        1: {
-          H20: 0.1,
-
-          CO2: 0.04,
-
-          O2: 0.2,
-
-          N2: 0.78,
-        },
-
-        2: {
-          H20: 0.1,
-
-          CO2: 0.04,
-
-          O2: 0.2,
-
-          N2: 0.78,
-        },
-
-        3: {
-          H20: 0.1,
-
-          CO2: 0.04,
-
-          O2: 0.2,
-
-          N2: 0.78,
-        },
-
-        4: {
-          H20: 0.1,
-
-          CO2: 0.04,
-
-          O2: 0.2,
-
-          N2: 0.78,
-        },
-
-        5: {
-          H20: 0.1,
-
-          CO2: 0.04,
-
-          O2: 0.2,
-
-          N2: 0.78,
-        },
-
-        6: {
-          H20: 0.1,
-
-          CO2: 0.04,
-
-          O2: 0.2,
-
-          N2: 0.78,
-        },
-
-        7: {
-          H20: 0.1,
-
-          CO2: 0.04,
-
-          O2: 0.2,
-
-          N2: 0.78,
-        },
-        8: {
-          H20: 0.1,
-
-          CO2: 0.04,
-
-          O2: 0.2,
-
-          N2: 0.78,
-        },
-
-        9: {
-          H20: 0.1,
-
-          CO2: 0.04,
-
-          O2: 0.2,
-
-          N2: 0.78,
-        },
-
-        10: {
-          H20: 0.1,
-
-          CO2: 0.04,
-
-          O2: 0.2,
-
-          N2: 0.78,
-        },
-      },
-    },
-  },
-};
 //Adds a basic set of data overall
 const add_data_overall_vorlage = () => {
   const date = new Date();
@@ -289,3 +178,32 @@ export function future_values() {
   }
   return results;
 }
+
+
+export async function get_AirQualtiy(callback) {
+ 
+    
+    const statref = ref(db, "/Arduino/devices/random_id/current_data/AirQualtiy");
+    let airQualtiy =[]
+    onValue(statref, (snapshot) => {
+
+      airQualtiy.push(snapshot.val())
+
+    })
+    const airQualityStatus = AirQualityCheck(airQualtiy);
+    callback(airQualityStatus)
+}
+
+function AirQualityCheck(AirQuality) {
+  switch (AirQuality) {
+    case 1:
+      return "Good";
+    case 2: 
+      return "Medium";
+    case 3: 
+      return "Bad";
+    default:
+      return "Really Bad";
+  }
+  }
+

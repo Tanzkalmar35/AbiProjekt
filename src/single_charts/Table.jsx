@@ -1,5 +1,6 @@
 import React from "react";
 import { check, rounded } from "./Funticons_for_charts";
+import { get_AirQualtiy } from "../db";
 
 export default function Table({ Data }) {
   /*
@@ -12,6 +13,9 @@ export default function Table({ Data }) {
   const [o2_level, setO2_level] = React.useState("");
   const [N2_level, setN2_level] = React.useState("");
   const [Co2_level, setCO2_level] = React.useState("");
+  const [AirQuality, setAirQuality] = React.useState("");
+
+  setTimeout(() => {setAirQuality(get_AirQualtiy)}, 2000);
   
 
   React.useEffect(() => {
@@ -42,6 +46,7 @@ export default function Table({ Data }) {
 
 
   return (
+    <div>
     <div className=" grid-cols-3 flex justify-between m-40 ring-8 ring-black">
       <ul className="col-1 pr-10 bg-blue-400">
         <li className="bg-blue-400">O2 :</li>
@@ -61,6 +66,25 @@ export default function Table({ Data }) {
         <li className={check(Co2_level)}>{Co2_level}</li>
        
       </ul>
+    </div>
+    <div className=' grid-cols-3 flex justify-between m-40 ring-8 ring-black'>
+        <ul className='col-1 pr-10 bg-blue-400 '>
+            <li className='bg-blue-400'>Temp:</li>
+            <li className='bg-blue-400'>RH:</li>
+            <li className='bg-blue-400'>Air:</li>
+        </ul>
+        <ul className='col-2 bg-blue-500 ring-4 ring-black pr-10 pl-10  '>
+            <li className='bg-blue-500'>04</li>
+            <li className='bg-blue-500'>40&</li>
+            <li className='bg-blue-500'>1</li>
+        </ul>
+        <ul className='col-2 pr-10 pl-10 bg-blue-400  ring-black ring-4  '>
+            <li className='bg-blue-400'>Good</li>
+            <li className='bg-blue-400'>Bad</li>
+            <li className='bg-blue-400 '>{AirQuality}</li>
+        </ul>
+
+    </div>
     </div>
   );
 }

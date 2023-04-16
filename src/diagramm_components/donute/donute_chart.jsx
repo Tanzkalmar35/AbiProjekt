@@ -5,7 +5,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 import { add_vorlage, new_data_overall, get_current_data, get_CO2_overtime } from "../../db";
 import Table from "../../single_charts/Table";
-import TableTempRH from "../../single_charts/TableTempRH";
+
 
 const Donute_chart = ({ trigger }) => {
   //Dont rly understand but is needed for better styles
@@ -126,7 +126,7 @@ const Donute_chart = ({ trigger }) => {
       <div className="text-6xl col-span-1 ">
         
         <Table Data={current_data}></Table>
-        <TableTempRH Data={current_data}></TableTempRH>
+        
       </div>
       <Doughnut
         data={data}
