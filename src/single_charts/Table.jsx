@@ -122,10 +122,12 @@ export default function Table({ Data }) {
           </tr>
         
         </table>
+        
+        
       </div>
 
       <div className="mt-10">
-        <table>
+      <table>
           <tr>
             <th className="pr-10 bg-slate-700">Stoff: </th>
             <th className="pr-10 bg-slate-700">Wert:</th>
