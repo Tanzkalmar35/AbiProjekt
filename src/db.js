@@ -207,3 +207,17 @@ function AirQualityCheck(AirQuality) {
   }
   }
 
+  export async function getRH(callback) {
+ 
+    
+    const statref = ref(db, "/Arduino/devices/random_id/current_data/H20");
+    let RH =[]
+    onValue(statref, (snapshot) => {
+
+      RH.push(snapshot.val())
+      
+
+    })
+    
+    callback(RH)
+}
