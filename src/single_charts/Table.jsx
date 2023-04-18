@@ -15,7 +15,7 @@ export default function Table({ Data }) {
   const [Co2_level, setCO2_level] = React.useState("");
   const [AirQuality, setAirQuality] = React.useState([]);
 
-  setTimeout(async () =>{setAirQuality(await AirQulitayGet())}, 5000);
+  setTimeout(async () => { setAirQuality(await AirQulitayGet()) }, 5000);
   /*
   
       <div className=" grid-cols-3 flex justify-between m-40 ring-8 ring-black">
@@ -95,15 +95,15 @@ export default function Table({ Data }) {
 
 
   return (
-    <div className="mr-40 ml-10">
+    <div className="mr-40 ml-10 shadow-inner">
       <div className="mb-10">
         <table>
           <thead>
-          <tr>
-            <th className="pr-10 bg-slate-700">Stoff: </th>
-            <th className="pr-10 bg-slate-700">Anteil:</th>
-            <th className="pr-10 bg-slate-700">Status:</th>
-          </tr>
+            <tr>
+              <th className="pr-10 bg-slate-700">Stoff: </th>
+              <th className="pr-10 bg-slate-700">Anteil:</th>
+              <th className="pr-10 bg-slate-700">Status:</th>
+            </tr>
           </thead>
           <tr>
             <td className="pr-10">CO2</td>
@@ -120,34 +120,24 @@ export default function Table({ Data }) {
             <td className="pr-10"> {Data[1]}%</td>
             <td className={check(N2_level)}>{N2_level}</td>
           </tr>
-        
+          <tr>
+            <td className="pr-10 ">Tmp</td>
+            <td className="pr-10 ">24°</td>
+            <td className={check(o2_level)}>Bad</td>
+          </tr>
+          <tr>
+            <td className="pr-10 ">Air</td>
+            <td className="pr-10 ">{AirQuality[0] + ""}</td>
+            <td className={check( AirQuality[1])}>{AirQuality[1]}</td>
+          </tr>
+         
         </table>
-        
-        
+
+
       </div>
 
-      <div className="mt-10">
-      <table>
-          <tr>
-            <th className="pr-10 bg-slate-700">Stoff: </th>
-            <th className="pr-10 bg-slate-700">Wert:</th>
-            <th className="pr-10 bg-slate-700">Status:</th>
-          </tr>
-          <tr>
-          <td className="pr-10 ">Tmp</td>
-          <td className="pr-10 ">24°</td>
-          <td className={check(o2_level)}>Bad</td>
-          </tr>
-          <tr>
-          <td className="pr-10 ">Air</td>
-          <td className="pr-10 ">{AirQuality[0] + ""}</td>
-          <td className={check(N2_level)}>{AirQuality[1]}</td>
-          </tr>
-
-
-        </table>
-      </div>
       
+
 
 
     </div>
