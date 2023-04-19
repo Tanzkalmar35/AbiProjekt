@@ -54,7 +54,7 @@ function Co2_future_chart() {
             //Those are the points in the chart
             data: Data,
             label: "CO2 in the next 5 minuts",
-            borderColor: '#6B3FA0',
+            borderColor: 'red',
             borderWidth: 3,
           },
         ],

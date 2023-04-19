@@ -1,8 +1,6 @@
 import { initializeApp } from "firebase/app";
 import "firebase/app";
 
-
-
 import { getDatabase, ref, set, update, onValue } from "firebase/database";
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -21,7 +19,6 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 //is the blueprint for the Firebase structured data
 
-
 //Adds a basic set of data overall
 const add_data_overall_vorlage = () => {
   const date = new Date();
@@ -32,7 +29,7 @@ const add_data_overall_vorlage = () => {
     time = `${hours}:${"0" + minutes}`;
   } else {
     time = `${hours}:${minutes}`;
-  } 
+  }
 
   return {
     [time]: {
@@ -114,12 +111,7 @@ export function get_current_data(randomId, callback) {
   onValue(starCountRef, (snapshot) => {
     let data = snapshot.val();
 
-    let current_data = [
-      data.O2,
-      data.N2,
-      
-      data.CO2 * 1000,
-    ];
+    let current_data = [data.O2, data.N2, data.CO2 * 1000];
     callback(current_data);
   });
 }
@@ -155,7 +147,6 @@ export function get_CO2_overtime(random_id, callback) {
     );
   });
 
- 
   callback(data);
 }
 
@@ -170,7 +161,7 @@ export function future_values() {
 
   const rise = CO - (CO - 0.01);
   let results = [];
-  results.push((CO - 0.01), CO);
+  results.push(CO - 0.01, CO);
   for (let i = 0; i < neededValues; i++) {
     let test = results[1 + i] + rise;
     results.push(test);
@@ -178,46 +169,54 @@ export function future_values() {
   return results;
 }
 
-
 export async function get_AirQualtiy(callback) {
- 
-    
-    const statref = ref(db, "/Arduino/devices/random_id/current_data/AirQualtiy");
-    let airQualtiy =[]
-    onValue(statref, (snapshot) => {
+  const statref = ref(db, "/Arduino/devices/random_id/current_data/AirQualtiy");
+  let airQualtiy = [];
+  onValue(statref, (snapshot) => {
+    airQualtiy.push(snapshot.val());
+    airQualtiy.push(AirQualityCheck(airQualtiy));
+  });
 
-      airQualtiy.push(snapshot.val())
-      airQualtiy.push(AirQualityCheck(airQualtiy));
-
-    })
-    
-    callback(airQualtiy)
+  callback(airQualtiy);
 }
 
 function AirQualityCheck(AirQuality) {
   switch (AirQuality[0]) {
     case 1:
       return "Good";
-    case 2: 
+    case 2:
       return "Medium";
-    case 3: 
+    case 3:
       return "Bad";
     default:
       return "Really Bad";
   }
-  }
+}
 
-  export async function getRH(callback) {
- 
-    
-    const statref = ref(db, "/Arduino/devices/random_id/current_data/H20");
-    let RH =[]
-    onValue(statref, (snapshot) => {
+export async function getRH(callback) {
+  const statref = ref(db, "/Arduino/devices/random_id/current_data/H20");
+  let RH = [];
+  onValue(statref, (snapshot) => {
+    RH.push(snapshot.val());
+  });
 
-      RH.push(snapshot.val())
-      
+  callback(RH);
+}
 
-    })
-    
-    callback(RH)
+export function getLastWeek(callback) {
+  const statref = ref(db, "/Arduino/devices/random_id/LastWeek");
+  let LastWeek = {};
+
+  onValue(statref, (snapshot) => {
+    let alldata = snapshot.val();
+    LastWeek["Monday"] = alldata.Monday;
+    LastWeek["Tuesday"] = alldata.Tuesday;
+    LastWeek["Wednesday"] = alldata.Wednesday;
+    LastWeek["Thursday"] = alldata.Thursday;
+    LastWeek["Friday"] = alldata.Friday;
+    LastWeek["Saturday"] = alldata.Saturday;
+    LastWeek["Sunday"] = alldata.Sunday;
+  });
+
+  callback(LastWeek)
 }

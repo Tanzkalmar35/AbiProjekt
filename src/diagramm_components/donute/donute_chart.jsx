@@ -3,8 +3,9 @@ import { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 //Alway import this else it wont work
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
-import { add_vorlage, new_data_overall, get_current_data, get_CO2_overtime } from "../../db";
+import {  get_current_data} from "../../db";
 import Table from "../../single_charts/Table";
+import { get_AirQualtiy, getRH } from "../../db";
 
 
 const Donute_chart = ({ trigger }) => {
@@ -19,21 +20,19 @@ const Donute_chart = ({ trigger }) => {
   O2 = 0.20
   CO2 = 0.0004
   */
-  let CO2 = 0.0005;
-  let O2 = 0.1;
-  let RH = 0.1;
-  let N2 = 0.78;
+
 
   
 
   //This is the const for storing the current data its a state so it can be updated
   const [current_data, setCurrentData] = useState();
-
+  
   /*This data is using the get_current_data function 
   to get the current data and if there is no it will use the normal data*/
   const fetchData = () => {
     get_current_data("random_id", (data) => {
       if (data) {
+
         setCurrentData(data);
         
       } else {
@@ -119,13 +118,40 @@ const Donute_chart = ({ trigger }) => {
     ],
   });
 
+  //Extra Data for the Table on the left side of the chart
+  const [AirQuality, setAirQuality] = React.useState([]);
+  const [RH, setRH] = React.useState([])
+
+  setTimeout(async () => { setAirQuality(await AirQulitayGet()) }, 1000);
+  setTimeout(async () => { setRH(await RHGet()) }, 1000);
+  
+  function RHGet(){
+    return new Promise((resolve, reject) =>{
+      getRH((data)=>{
+        if(data){
+          resolve(data);
+        }else{resolve()}
+      })
+    })
+  }
+
+  function AirQulitayGet() {
+    return new Promise((resolve, reject) => {
+      get_AirQualtiy((data) => {
+        if (data) { resolve(data); }
+        else { resolve() }
+      })
+
+    })
+  }
+
   //returns the chart object if trigger is true else returns null
-  return current_data ? (
+  return current_data && RH && AirQuality ? (
     <div className=" grid-cols-2 flex items-center   ">
       
       <div className="text-6xl col-span-1 ">
         
-        <Table Data={current_data}></Table>
+        <Table Data={{"O2" :current_data[0], "N2" :current_data[1], "CO2" :current_data[2], "Air" : AirQuality, "RH" : RH }}></Table>
         
       </div>
       <Doughnut

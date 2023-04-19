@@ -8,8 +8,8 @@ const Line_chart = ({ trigger, data, options }) => {
 
   //Displays the chart if the trigger is true
   return trigger ? (
-    <div className="w-2/6 h-2/6 flex justify-center align-middle">
-      <Line data={data} options={options} />
+    <div className="">
+      <Line data={data} width={620} height={320}  />
     </div>
   ) : null;
 };
