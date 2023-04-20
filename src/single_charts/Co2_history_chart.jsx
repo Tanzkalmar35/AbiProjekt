@@ -100,14 +100,18 @@ function Co2_history_chart() {
   function get_time() {
     const date = new Date();
     const hours = date.getHours();
-    const minutes = date.getMinutes();
-
+    let minutes = date.getMinutes();
+    
     return [
-      hours + ":" + minutes,
-      hours + ":" + (minutes + 1),
-      hours + ":" + (minutes + 2),
-      hours + ":" + (minutes + 3),
       hours + ":" + (minutes + 4),
+      hours + ":" + (minutes + 3),
+      hours + ":" + (minutes + 2),
+      hours + ":" + (minutes + 1),
+      hours + ":" + minutes
+      
+     
+      
+      
     ];
   }
 
