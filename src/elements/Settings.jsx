@@ -3,27 +3,29 @@ import React from 'react'
 const Settings = () => {
   return (
     <div className='text-5xl text-white'>
-      <table>
+      <div className='pb-10 text-center text-purple-500'>Settings</div>
+      
+      <table className=' flex justify-center '>
         <tbody>
-          <tr>
-            <td>Dark Mode</td>
-            <td>Button later here</td>
+          <tr className=''>
+            <td className='pt-10 pr-10'>Dark Mode</td>
+            <td className='pt-10'>Button later here</td>
+          </tr>
+          <tr >
+            <td className='pt-10 pr-10'>Benachrichtigungen</td>
+            <td className='pt-10'><button>How to?</button></td>
           </tr>
           <tr>
-            <td>Benachrichtigungen</td>
-            <td><button>Here will be more</button></td>
+            <td className='pt-10 pr-10'>Connected Units</td>
+            <td className='pt-10'><button>How to?</button></td>
           </tr>
           <tr>
-            <td>Connected Units</td>
-            <td><button>How to?</button></td>
+            <td className='pt-10 pr-10'>Help</td>
+            <td className='pt-10'><button>Help will be added later</button></td>
           </tr>
           <tr>
-            <td>Help</td>
-            <td><button>Help will be added later</button></td>
-          </tr>
-          <tr>
-            <td>About Us</td>
-            <td><button>Among US</button></td>
+            <td className='pt-10 pr-10'>About Us</td>
+            <td className='pt-10'><button>Among US</button></td>
           </tr>
         </tbody>
       </table>
