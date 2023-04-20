@@ -14,7 +14,7 @@ const Dashboard = () => {
   const [line_chrat_view, setline_chrat_view] = useState(false);
 
   return (
-    <div>
+    <div className="">
       {/*If trigger equals true the chart is viewed */}
       
       
