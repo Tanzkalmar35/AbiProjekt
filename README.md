@@ -13,9 +13,8 @@
 #   JavaScript
 #   Tailwind CSS
 
-# Running the Project
-
-# To run the project, open the integrated terminal in Visual Studio Code and enter "yarn start".
+# Running the Project: 
+#   To run the project, open the integrated terminal in Visual Studio Code and enter "yarn start".
 
 # Authors: Nick Hillmann, Marc Müller, Jarno Callies, Fabian Holler.
 
