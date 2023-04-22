@@ -17,4 +17,3 @@
 #   To run the project, open the integrated terminal in Visual Studio Code and enter "yarn start".
 
 # Authors: Fabian Holler, Nick Hillmann, Marc Müller, Jarno Callies.
-
