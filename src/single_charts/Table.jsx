@@ -46,7 +46,7 @@ export default function Table({ Data }) {
     <div className="mr-40 ml-20 ">
       
       <div className="mb-10">
-        <table className="border border-separate border-black ">
+        <table className="border-4 border-separate border-black ">
           <thead>
             <tr>
               <th className="pr-10 bg-slate-700 text-purple-500">Stoff: </th>
@@ -83,7 +83,7 @@ export default function Table({ Data }) {
           <tr>
             <td className="pr-10 bg-slate-500 ">RH</td>
             <td className="pr-10 bg-slate-500 ">{Data.RH}</td>
-            <td className="bg-black">NULL</td>
+            <td className="bg-black"></td>
             
           </tr>
           </tbody>
