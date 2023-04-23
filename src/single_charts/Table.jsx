@@ -46,7 +46,7 @@ export default function Table({ Data }) {
     <div className="mr-40 ml-20 ">
       
       <div className="mb-10">
-        <table>
+        <table className="border border-separate border-black ">
           <thead>
             <tr>
               <th className="pr-10 bg-slate-700 text-purple-500">Stoff: </th>
@@ -56,34 +56,34 @@ export default function Table({ Data }) {
           </thead>
           <tbody>
           <tr>
-            <td className="pr-10">CO2</td>
-            <td className="pr-10">{rounded(Data.CO2)}%</td>
+            <td className="pr-10 bg-slate-500">CO2</td>
+            <td className="pr-10 bg-slate-500">{rounded(Data.CO2)}%</td>
             <td className={check(Co2_level)}>{Co2_level}</td>
           </tr>
           <tr>
-            <td className="pr-10">O2</td>
-            <td className="pr-10">{Data.O2}%</td>
+            <td className="pr-10 bg-slate-500">O2</td>
+            <td className="pr-10 bg-slate-500">{Data.O2}%</td>
             <td className={check(o2_level)}>{o2_level}</td>
           </tr>
           <tr>
-            <td className="pr-10">N2</td>
-            <td className="pr-10"> {Data.N2}%</td>
+            <td className="pr-10 bg-slate-500">N2</td>
+            <td className="pr-10 bg-slate-500"> {Data.N2}%</td>
             <td className={check(N2_level)}>{N2_level}</td>
           </tr>
           <tr>
-            <td className="pr-10 ">Tmp</td>
-            <td className="pr-10 ">24°</td>
+            <td className="pr-10 bg-slate-500 ">Tmp</td>
+            <td className="pr-10  bg-slate-500">24°</td>
             <td className={check(o2_level)}>Bad</td>
           </tr>
           <tr>
-            <td className="pr-10 ">Air</td>
-            <td className="pr-10 ">{Data.Air[0]}</td>
+            <td className="pr-10 bg-slate-500 ">Air</td>
+            <td className="pr-10  bg-slate-500">{Data.Air[0]}</td>
             <td className={check(Data.Air[1])}>{Data.Air[1]}</td>
           </tr>
           <tr>
-            <td className="pr-10 ">RH</td>
-            <td className="pr-10 ">{Data.RH}</td>
-            <td>NULL</td>
+            <td className="pr-10 bg-slate-500 ">RH</td>
+            <td className="pr-10 bg-slate-500 ">{Data.RH}</td>
+            <td className="bg-black">NULL</td>
             
           </tr>
           </tbody>

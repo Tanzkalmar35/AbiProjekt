@@ -43,7 +43,7 @@ const Co2 = () => {
   */
   return (
     <>
-    <h1 className="justify-center text-center text-6xl">CO2</h1>
+    <h1 className="justify-center text-center text-6xl text-purple-600  " >CO2</h1>
     <div className="grid-cols-2 flex justify-center ">
        
       <div className="col-span-1 pt-20 pr-32">
