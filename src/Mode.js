@@ -3,6 +3,9 @@
  * Call these styles with a check whether dark/light mode is activated
  * @type {{light: string, dark: string}}
  */
+
+Const [currentMode, setCurrentMode] = useState("");
+
 export const darkMode = {
     color1: "",
 }
