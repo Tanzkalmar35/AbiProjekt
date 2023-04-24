@@ -4,8 +4,6 @@
  * @type {{light: string, dark: string}}
  */
 
-Const [currentMode, setCurrentMode] = useState("");
-
 export const darkMode = {
     color1: "",
 }
