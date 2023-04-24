@@ -7,6 +7,7 @@ function Co2LastWeekBar() {
 
     setTimeout(async () => { setDataLastWeek(await readLastWeek()) }, 1000)
 
+    //await function for Data of the last week
     function readLastWeek() {
         return new Promise((resolve, reject) => {
             getLastWeek((datalast) => {
@@ -14,7 +15,7 @@ function Co2LastWeekBar() {
             })
         })
     }
-
+    //Creating an object that chartjs can read for the cahrt
     React.useEffect(() => {
         setData({
             labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
@@ -22,7 +23,7 @@ function Co2LastWeekBar() {
                 {
                     data: [DataLastWeek.Monday, DataLastWeek.Tuesday, DataLastWeek.Wednesday, DataLastWeek.Thursday, DataLastWeek.Friday, DataLastWeek.Saturday, DataLastWeek.Sunday],
                     backgroundColor: "#660066",
-                    borderWidth: 3
+                    borderWidth: 4
 
 
                 },
