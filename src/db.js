@@ -194,7 +194,7 @@ function AirQualityCheck(AirQuality) {
 }
 
 export async function getRH(callback) {
-  const statref = ref(db, "/Arduino/devices/random_id/current_data/H20");
+  const statref = ref(db, "/Arduino/devices/random_id/RH/Now");
   let RH = [];
   onValue(statref, (snapshot) => {
     RH.push(snapshot.val());
@@ -235,4 +235,17 @@ export function getTempLast5Min(callback) {
   });
 
   callback(TempOvertime);
+}
+
+
+export function getTempNow(callback){
+  const statref = ref(db, "/Arduino/devices/random_id/Temp/Now");
+  let getTempNow;
+
+  onValue(statref, (snapshot) => {
+    getTempNow = snapshot.val();
+    
+  });
+
+  callback(getTempNow);
 }

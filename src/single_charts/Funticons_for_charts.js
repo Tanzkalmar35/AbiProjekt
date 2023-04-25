@@ -17,6 +17,15 @@ export function rounded(val) {
     }
   }
 
+export function TempCheck(val){
+  if(val >= 18 && val <= 24 ){
+    return "ml-10 bg-green-500";
+  }else if(val < 18 || val > 24){
+    return "ml-10 bg-red-500";
+
+  }
+}
+
 export function checkDay(index, value){
 
   switch(index){

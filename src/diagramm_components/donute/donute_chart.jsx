@@ -5,7 +5,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 import {  get_current_data} from "../../db";
 import Table from "../../single_charts/Table";
-import { get_AirQualtiy, getRH } from "../../db";
+import { get_AirQualtiy, getRH, getTempNow } from "../../db";
 
 
 const Donute_chart = ({ trigger }) => {
@@ -121,13 +121,25 @@ const Donute_chart = ({ trigger }) => {
   //Extra Data for the Table on the left side of the chart
   const [AirQuality, setAirQuality] = React.useState([]);
   const [RH, setRH] = React.useState([])
+  const [Temp, setTemp] = React.useState();
 
   setTimeout(async () => { setAirQuality(await AirQulitayGet()) }, 1000);
   setTimeout(async () => { setRH(await RHGet()) }, 1000);
+  setTimeout(async () => { setTemp(await TempGet()) }, 1000)
   
   function RHGet(){
     return new Promise((resolve, reject) =>{
       getRH((data)=>{
+        if(data){
+          resolve(data);
+        }else{resolve()}
+      })
+    })
+  }
+
+  function TempGet(){
+    return new Promise((resolve, reject) =>{
+      getTempNow((data)=>{
         if(data){
           resolve(data);
         }else{resolve()}
@@ -151,7 +163,7 @@ const Donute_chart = ({ trigger }) => {
       
       <div className="text-6xl col-span-1 ">
         
-        <Table Data={{"O2" :current_data[0], "N2" :current_data[1], "CO2" :current_data[2], "Air" : AirQuality, "RH" : RH }}></Table>
+        <Table Data={{"O2" :current_data[0], "N2" :current_data[1], "CO2" :current_data[2], "Air" : AirQuality, "RH" : RH, "Temp" : Temp }}></Table>
         
       </div>
       <Doughnut
