@@ -1,5 +1,5 @@
 import React from 'react'
-import O2_chart from '../single_charts/O2_chart'
+import RHChart from '../single_charts/RHChart'
 import TempChart from '../single_charts/tempChart'
 
 const Temperature = () => {
@@ -9,7 +9,7 @@ const Temperature = () => {
     <table className='flex justify-center pt-36'>
       <tbody>
         <tr>
-          <td className='pr-10'><O2_chart></O2_chart></td>
+          <td className='pr-10'><RHChart></RHChart></td>
           <td className='pl-10'><TempChart></TempChart></td>
         </tr>
       </tbody>

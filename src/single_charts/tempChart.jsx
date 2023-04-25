@@ -11,8 +11,8 @@ export default function TempChart() {
                 tooltip: {
                     callbacks: {
                         label: (context) => {
-                           
-                            return "CO2 Percentage:" + context.raw + "%";
+                            console.log(context.raw)
+                            return context.raw + "°C"
                         },
 
 
@@ -75,7 +75,7 @@ export default function TempChart() {
 
 
     return (
-        <div><BarChart Data={data} ></BarChart></div>
+        <div><BarChart Data={data} Options={ChartOptions.options}></BarChart></div>
 
     )
 }

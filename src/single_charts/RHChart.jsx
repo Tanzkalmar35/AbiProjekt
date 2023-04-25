@@ -1,11 +1,27 @@
 import React from 'react'
 import BarChart from '../diagramm_components/bar/bar_chart'
 import { getLastWeek } from '../db'
-export default function O2_chart() {
+export default function RHChart() {
     const [DataLastWeek, setDataLastWeek] = React.useState({})
 
     setTimeout(async () => { setDataLastWeek(await readLastWeek()) }, 1000)
+    const ChartOptions = {
+        options: {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: (context) => {
+                            console.log(context.raw)
+                            return context.raw + "%"
+                        },
 
+
+
+                    }
+                }
+            }
+        }
+    }
     //await function for Data of the last week
     function readLastWeek() {
         return new Promise((resolve, reject) => {
@@ -48,7 +64,7 @@ export default function O2_chart() {
     });
 
     return (
-    <div><BarChart Data={data}></BarChart></div>
+    <div><BarChart Data={data} Options={ChartOptions.options}></BarChart></div>
     
   )
 }
