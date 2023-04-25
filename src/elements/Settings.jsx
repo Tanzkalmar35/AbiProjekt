@@ -1,10 +1,10 @@
 import React from 'react'
-import Switch from "react-switch";
+import {Switch} from "antd";
 
 const Settings = () => {
 
   const [showText, setShowText] = React.useState(false)
-  const [currentColorMode, setMode] = React.useState(true)
+  const [currentColorMode, setMode] = React.useState(false)
 
   function toggleShowText() {
     setShowText(!showText)
@@ -32,7 +32,8 @@ const Settings = () => {
           <tbody>
             <tr className=''>
               <td className='pt-10 pr-10 text-5xl'>Dark Mode</td>
-              <Switch checked={currentColorMode} onChange={() => setMode(!currentColorMode)}/>
+              <Switch className="bg-white" onChange={() => {setMode(!currentColorMode)
+                console.log(currentColorMode)}}/>
             </tr>
             <tr >
               <td className='pt-10 pr-10 text-5xl'>Benachrichtigungen</td>

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.2.0",
+    "antd": "^5.4.5",
     "autoprefixer": "^10.4.13",
     "chart.js": "^4.2.1",
     "firebase": "^9.17.1",
