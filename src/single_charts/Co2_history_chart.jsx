@@ -96,10 +96,10 @@ function Co2_history_chart() {
     let minutes = date.getMinutes();
 
     return [
-      hours + ":" + (minutes + 4),
-      hours + ":" + (minutes + 3),
-      hours + ":" + (minutes + 2),
-      hours + ":" + (minutes + 1),
+      hours + ":" + (minutes - 4),
+      hours + ":" + (minutes - 3),
+      hours + ":" + (minutes - 2),
+      hours + ":" + (minutes - 1),
       hours + ":" + minutes
 
 
