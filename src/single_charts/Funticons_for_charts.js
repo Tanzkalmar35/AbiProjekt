@@ -16,3 +16,25 @@ export function rounded(val) {
       return val.toFixed(2);
     }
   }
+
+export function checkDay(index, value){
+
+  switch(index){
+    case 0:
+      return "Monday: " + rounded(value * 100) + "%";
+    case 1:
+      return "Tuesday: " + rounded(value * 100) + "%";
+    case 2:
+      return "Wednesday: " + rounded(value * 100) + "%";
+    case 3:
+      return "Thursday: " + rounded(value * 100) + "%";
+    case 4:
+      return "Friday: " + rounded(value * 100) + "%";
+    case 5:
+      return "Saturday: " + rounded(value * 100) + "%";
+    default:
+      return "Sunday: " + rounded(value * 100) + "%";
+
+  }
+
+}

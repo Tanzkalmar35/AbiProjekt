@@ -132,7 +132,7 @@ function calculate(temp, rh) {
   return dp.toFixed(2);
 }
 
-export function get_CO2_overtime(random_id, callback) {
+export function get_CO2_overtime( callback) {
   let statref = ref(db, "/Arduino/devices/random_id/current_data/CO2");
 
   let data = [];

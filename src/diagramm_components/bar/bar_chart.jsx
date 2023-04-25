@@ -4,13 +4,13 @@ import { Bar } from "react-chartjs-2";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 
 
-const BarChart = ({ Data }) => {
+const BarChart = ({ Data, Options}) => {
   chartjs.register(ArcElement, Tooltip, Legend);
   
 
   return(
     <div className="text-5xl">
-      <Bar data={Data} width={600} height={420} />
+      <Bar data={Data} width={600} height={420} options={Options} />
     </div>
   )
 };

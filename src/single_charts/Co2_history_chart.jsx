@@ -13,7 +13,7 @@ function Co2_history_chart() {
   const [time, setTime] = useState(get_time);
 
   //This date will be pulled from Firebase
-  const [current_data, setCurrentData] = useState(async () => { await  get_Data() } );
+  const [current_data, setCurrentData] = useState([0,0,0,0,0]);
 
   const [options_for_chart, setoptions_for_chart] = useState({
     options: {
@@ -55,10 +55,7 @@ function Co2_history_chart() {
   //update the chart dynamically
   setTimeout(async () => {
     setTime(get_time);
-    let new_data = await get_Data();
-    setCurrentData([]);
-    setCurrentData(new_data);
-
+    setCurrentData( await get_Data());
     setChart({
       labels: time,
       datasets: [
@@ -72,14 +69,13 @@ function Co2_history_chart() {
       options: options_for_chart
     });
 
-  }, 5000);
+  }, 1000);
 
   //This function is deleting the first element of the array and adds a new one at the end
 
   function get_Data() {
-
     return new Promise((resolve, reject) => {
-      get_CO2_overtime("random_id", (data) => {
+      get_CO2_overtime((data) => {
         if (data) {
           resolve(data);
         } else {
