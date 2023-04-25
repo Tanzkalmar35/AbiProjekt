@@ -3,7 +3,8 @@ import Line_chart from "../diagramm_components/line/line_chart";
 import { useState } from "react";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 import { get_CO2_overtime } from "../db";
-import { async } from "@firebase/util";
+
+
 
 function Co2_history_chart() {
   chartjs.register(ArcElement, Tooltip, Legend);
@@ -12,13 +13,7 @@ function Co2_history_chart() {
   const [time, setTime] = useState(get_time);
 
   //This date will be pulled from Firebase
-  const [current_data, setCurrentData] = useState([
-    Math.random() * (0.05 - 0.03) + 0.05,
-    Math.random() * (0.05 - 0.03) + 0.05,
-    Math.random() * (0.05 - 0.03) + 0.05,
-    Math.random() * (0.05 - 0.03) + 0.05,
-    Math.random() * (0.05 - 0.03) + 0.05,
-  ]);
+  const [current_data, setCurrentData] = useState(async () => { await  get_Data() } );
 
   const [options_for_chart, setoptions_for_chart] = useState({
     options: {
@@ -31,6 +26,7 @@ function Co2_history_chart() {
         tooltip: {
           callbacks: {
             label: (context) => {
+              
               return "CO2 Percentage:" + context.raw + "%";
             },
           },
@@ -57,12 +53,12 @@ function Co2_history_chart() {
   });
 
   //update the chart dynamically
-
   setTimeout(async () => {
     setTime(get_time);
     let new_data = await get_Data();
+    setCurrentData([]);
     setCurrentData(new_data);
-    
+
     setChart({
       labels: time,
       datasets: [
@@ -73,14 +69,15 @@ function Co2_history_chart() {
           borderWidth: 3,
         },
       ],
+      options: options_for_chart
     });
-    
+
   }, 5000);
 
   //This function is deleting the first element of the array and adds a new one at the end
 
   function get_Data() {
-    
+
     return new Promise((resolve, reject) => {
       get_CO2_overtime("random_id", (data) => {
         if (data) {
@@ -101,17 +98,17 @@ function Co2_history_chart() {
     const date = new Date();
     const hours = date.getHours();
     let minutes = date.getMinutes();
-    
+
     return [
       hours + ":" + (minutes + 4),
       hours + ":" + (minutes + 3),
       hours + ":" + (minutes + 2),
       hours + ":" + (minutes + 1),
       hours + ":" + minutes
-      
-     
-      
-      
+
+
+
+
     ];
   }
 

@@ -9,7 +9,7 @@ const Line_chart = ({ trigger, data, options }) => {
   //Displays the chart if the trigger is true
   return trigger ? (
     <div className="">
-      <Line data={data} width={620} height={320}  />
+      <Line data={data} width={620} height={320} options={options}  />
     </div>
   ) : null;
 };
