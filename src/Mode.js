@@ -5,9 +5,11 @@
  */
 
 export const darkMode = {
-    color1: "",
+    background: "#212121",
+    text: "#fff",
 }
 
 export const lightMode = {
-    color1: "",
+    background: "#fff",
+    text: "#212121",
 }

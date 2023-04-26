@@ -15,6 +15,7 @@ import AirHumidity from "./elements/AirHumidity";
 import AirQuality from "./elements/AirQuality";
 import Temperature from "./elements/Temperature";
 import Settings from "./elements/Settings";
+import {darkMode, lightMode} from "./Mode.js";
 
 const App = () => {
 
@@ -23,7 +24,7 @@ const App = () => {
 
   return (
     <>
-      <div className="flex overflow-hidden ">
+      <div id="app" className="flex overflow-hidden bg-[#212121]" >
         <NavContext.Provider value={value}>
           <Navbar />
           <Container 

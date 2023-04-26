@@ -11,6 +11,12 @@ const Settings = () => {
     console.log(showText)
   }
 
+  function handleModeChange() {
+    setMode(!currentColorMode)
+    const app = document.getElementById("app").style.backgroundColor = currentColorMode ? "#212121" : "#fff";
+    app.style.color = currentColorMode ? "#fff" : "#212121";
+  }
+
   function Text() {
     if (showText) {
       return <div className="py-8  max-w-xl mx-auto text-purple-500">
@@ -32,7 +38,7 @@ const Settings = () => {
           <tbody>
             <tr className=''>
               <td className='pt-10 pr-10 text-5xl'>Dark Mode</td>
-              <Switch className="bg-white" onChange={() => {setMode(!currentColorMode)
+              <Switch className="bg-white" onChange={() => {handleModeChange()
                 console.log(currentColorMode)}}/>
             </tr>
             <tr >
