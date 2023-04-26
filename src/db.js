@@ -132,7 +132,7 @@ function calculate(temp, rh) {
   return dp.toFixed(2);
 }
 
-export function get_CO2_overtime( callback) {
+export function get_CO2_overtime(callback) {
   let statref = ref(db, "/Arduino/devices/random_id/current_data/CO2");
 
   let data = [];
@@ -237,15 +237,40 @@ export function getTempLast5Min(callback) {
   callback(TempOvertime);
 }
 
-
-export function getTempNow(callback){
+export function getTempNow(callback) {
   const statref = ref(db, "/Arduino/devices/random_id/Temp/Now");
   let getTempNow;
 
   onValue(statref, (snapshot) => {
     getTempNow = snapshot.val();
-    
   });
 
   callback(getTempNow);
+}
+
+export function setDay() {
+  
+  set(ref(db, "/Arduino/devices/random_id/Today"),checkDay(new Date()))
+  
+}
+
+function checkDay(Date){
+  
+  switch (Date.getDay()) {
+    case 0:
+      return "Sunday";
+    case 1:
+      return "Monday";
+    case 2:
+      return "Tuesday";
+    case 3:
+      return "Wednesday";
+    case 4: 
+      return "Thursday";
+    case 5: 
+      return "Friday";
+    default:
+      return "Saturday";
+  }
+ 
 }
