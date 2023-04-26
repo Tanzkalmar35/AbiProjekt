@@ -15,12 +15,13 @@ import AirHumidity from "./elements/AirHumidity";
 import AirQuality from "./elements/AirQuality";
 import Temperature from "./elements/Temperature";
 import Settings from "./elements/Settings";
+import { setDay } from "./db";
 
 const App = () => {
 
   const [nav, setNav] = useState(false);
   const value = { nav, setNav };
-
+  setDay()
   return (
     <>
       <div className="flex overflow-hidden ">
