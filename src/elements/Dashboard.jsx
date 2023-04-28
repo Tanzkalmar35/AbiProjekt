@@ -14,11 +14,11 @@ const Dashboard = () => {
   const [line_chrat_view, setline_chrat_view] = useState(false);
 
   return (
-    <div className="">
+    <div>
       {/*If trigger equals true the chart is viewed */}
       
       
-      <div className="   h-3/6 w-3/6">
+      <div >
       <Donute_chart trigger={doughnut_chrat_view}></Donute_chart>
       </div>
     </div>
