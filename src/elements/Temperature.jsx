@@ -5,7 +5,7 @@ import TempChart from '../single_charts/tempChart'
 const Temperature = () => {
   return (
     <>
-    <div className='text-7xl text-white'>Here will be the temperature and humidity chart later</div>
+    <div className='text-7xl text-white'>Hier könnte Ihre Werbung stehen</div>
     <table className='flex justify-center pt-36'>
       <tbody>
         <tr>
