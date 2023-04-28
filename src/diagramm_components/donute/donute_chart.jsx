@@ -20,13 +20,17 @@ const Donute_chart = ({ trigger }) => {
   O2 = 0.20
   CO2 = 0.0004
   */
+  let CO2 = 0.0004;
+  let O2 = 0.1;
+  let H20 = 0.1;
+  let N2 = 0.78;
 
 
   
 
   //This is the const for storing the current data its a state so it can be updated
   const [current_data, setCurrentData] = useState();
-  
+
   /*This data is using the get_current_data function 
   to get the current data and if there is no it will use the normal data*/
   const fetchData = () => {
