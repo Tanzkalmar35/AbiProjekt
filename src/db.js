@@ -274,3 +274,16 @@ function checkDay(Date){
   }
  
 }
+
+export function future_data () {
+
+
+let b = (ty-Tyt)/(t2-Tt2);
+let ty = 1 * data1 + 2 * data2 + 3 * data3 + 4 * data4 + 5* data5;
+let Tyt = 5 * y *3;
+let y = 1/5 * (data1 + data2 + data3 + data4 + data5);
+let t2 = 55;
+let Tt2 = 5 * 9;
+let a = y - b * 3;
+let mt = a + b*minute;
+}
