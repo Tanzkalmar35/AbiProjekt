@@ -133,17 +133,18 @@ function calculate(temp, rh) {
 }
 
 export function get_CO2_overtime(callback) {
-  let statref = ref(db, "/Arduino/devices/random_id/current_data/CO2");
+  let statref = ref(db, "/Arduino/devices/random_id/co2ppm/pmm");
 
   let data = [];
 
   onValue(statref, (snapshot) => {
+    let t = snapshot.val();
+    t = t * 1000
+    
     data.push(
-      snapshot.val() * 1000,
-      snapshot.val() * 1000,
-      snapshot.val() * 1000,
-      snapshot.val() * 1000,
-      snapshot.val() * 1000
+      t ,
+      t,
+      t,t,t
     );
   });
 
