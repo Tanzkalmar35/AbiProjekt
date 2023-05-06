@@ -33,9 +33,7 @@ const App = () => {
               <Routes>
                 <Route path="/dashboard" element={<Dashboard  />} />
                 <Route path="/co2" element={<Co2 />} />
-                <Route path="/o2" element={<O2 />} />
-                <Route path="/airquality" element={<AirQuality />} />
-                <Route path="/airhumidity" element={<AirHumidity />} />
+
                 <Route path="/temperature" element={<Temperature />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/info" element={<Info />} />
