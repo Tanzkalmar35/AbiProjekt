@@ -12,6 +12,7 @@ import { CgProfile } from "react-icons/cg";
 import { SlOptions } from "react-icons/sl";
 import {DiDocker } from "react-icons/di";
 import { NavLink } from "react-router-dom";
+import {VscAccount} from "react-icons/all.js";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -75,38 +76,29 @@ const Navbar = () => {
             description="Co2"
           ></NavUrl>
 
-          <NavUrl
-            url="/o2"
-          
-            description="O2"
-          ></NavUrl>
 
           <NavUrl
-            url="/airquality"
-            icon={<RiWindyFill />}
-            description="Air Quality"
-          ></NavUrl>
-          <NavUrl
-              url="/info"
-              icon={<RiWindyFill />}
-              description="Info"
+              url="/temperature"
+              icon={<TbTemperature />}
+              description="Temperature"
           ></NavUrl>
 
-          <NavUrl
-            url="/airhumidity"
-            icon={<WiHumidity />}
-            description="Air humidity"
-          ></NavUrl>
 
-          <NavUrl
-            url="/temperature"
-            icon={<TbTemperature />}
-            description="Temperature"
-          ></NavUrl>
+
+
 
           <span className={`${style.categories} ${style.second_category}`}>
             {nav ? "Options" : <SlOptions />}
           </span>
+
+          <NavUrl
+              url="/info"
+              icon={< VscAccount/>}
+              description="Info"
+          ></NavUrl>
+
+
+
 
           <NavUrl
             url="/settings"
