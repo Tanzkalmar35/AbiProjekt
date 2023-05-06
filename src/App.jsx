@@ -16,6 +16,7 @@ import AirQuality from "./elements/AirQuality";
 import Temperature from "./elements/Temperature";
 import Settings from "./elements/Settings";
 import {darkMode, lightMode} from "./Mode.js";
+import Info from "./elements/Info.jsx";
 
 const App = () => {
 
@@ -37,6 +38,7 @@ const App = () => {
                 <Route path="/airhumidity" element={<AirHumidity />} />
                 <Route path="/temperature" element={<Temperature />} />
                 <Route path="/settings" element={<Settings />} />
+                <Route path="/info" element={<Info />} />
               </Routes>
             }
           />

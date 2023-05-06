@@ -7,6 +7,7 @@
 # Technologies Used
 #   ESP
 #   ENS160+AHT21 sensor
+#   DHT11
 #   Firebase
 #   Yarn
 #   React
