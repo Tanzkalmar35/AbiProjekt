@@ -19,7 +19,7 @@ const Personinfo = ({Name, PersonalInfo, Picture }) => {
             <div className="card-body text-left">
                 <h2 className="card-title">{Name}</h2>
                 <div>{result.map(element => <p>{element}</p>)}</div>
-                
+
             </div>
         </div>
     </div>)
