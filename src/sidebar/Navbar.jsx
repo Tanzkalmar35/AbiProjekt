@@ -86,6 +86,11 @@ const Navbar = () => {
             icon={<RiWindyFill />}
             description="Air Quality"
           ></NavUrl>
+          <NavUrl
+              url="/info"
+              icon={<RiWindyFill />}
+              description="Info"
+          ></NavUrl>
 
           <NavUrl
             url="/airhumidity"
