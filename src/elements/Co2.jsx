@@ -76,7 +76,7 @@ const Co2 = () => {
 
             <div className="pt-10"><Co2_future_chart></Co2_future_chart></div>
           </div>
-      <div className="cols-2 flex pt-48">
+      <div className="cols-2 flex p-[10%] pt-36">
         <Co2LastWeekBar></Co2LastWeekBar>
       </div>
     </div>

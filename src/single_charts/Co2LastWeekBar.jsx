@@ -3,6 +3,7 @@ import Barchart from '../diagramm_components/bar/bar_chart.jsx'
 import {getCO2FB, getLastWeek} from '../db.js';
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 import { checkDay } from './Funticons_for_charts.js';
+import {Bar} from "react-chartjs-2";
 function Co2LastWeekBar() {
     chartjs.register(ArcElement, Tooltip, Legend);
     const [DataLastWeek, setDataLastWeek] = React.useState({})
@@ -23,6 +24,13 @@ function Co2LastWeekBar() {
 
 
                     }
+                },
+                subtitle : {
+                    display : false
+
+                },
+                title : {
+                    display: false
                 }
             }
         }
@@ -44,7 +52,7 @@ function Co2LastWeekBar() {
                     data: DataLastWeek,
                     backgroundColor: "#660066",
                     borderWidth: 4,
-                    label : "Average CO2 in the last week"
+                    label : "CO2 Now"
 
                 },
             ],
@@ -70,7 +78,7 @@ function Co2LastWeekBar() {
     });
 
     return (
-        <Barchart Data={data} Options={ChartOptions.options}></Barchart>
+        <Bar data={data} width={200} height={600} options={ChartOptions.options} />
     );
 }
 
