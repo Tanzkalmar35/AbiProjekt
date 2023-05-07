@@ -3,7 +3,7 @@ import React from "react";
 import Co2_history_chart from "../single_charts/Co2_history_chart";
 import Co2_future_chart from "../single_charts/Co2_future_chart";
 import Co2LastWeekBar from "../single_charts/Co2LastWeekBar";
-import {getCO2FB, getLastWeek, getTempLast5Min, makeTimeStamp} from "../db";
+import {getCO2FB, getCO2OverTimeFB, getLastWeek, getTempLast5Min, makeTimeStamp} from "../db";
 
 
 const Co2 = () => {
@@ -23,50 +23,48 @@ const Co2 = () => {
   }
 
   const [now, setNow] = React.useState(0)
-  const [last5, setlast5] = React.useState([])
+  const [last, setLast] = React.useState([])
+
+  setTimeout(async () => { setNow(await getCO2fromFB()) }, 1000)
+  setTimeout(async () => { setLast(await getLastFromFB()) }, 1000)
+  setTimeout(merge , 60000)
 
 
-  setTimeout(
-      async () => {
-        setNow(await getCO2())
-      }, 1000)
 
-  setTimeout(async () => {
-    setlast5(await getCO2OverTime())
-  }, 1000)
+  function merge(){
 
-  setTimeout(() => {
-
-    makeTimeStamp([0,0,0,0,0])
-  }, 30000)
-
-  function merge() {
-
-
-    let newData = [now, last5[0], last5[1], last5[2], last5[3]]
-
-
-    return newData;
-
+    let data = {"zero" : now, "one" : last[0], "two" : last[1],"three" : last[2], "four" : last[3]}
+    console.log(data)
+    makeTimeStamp(data)
   }
 
-  async  function getCO2OverTime() {
-    return new Promise((resolve, reject) => {
-      getCO2FB((datalast) => { datalast ? resolve(datalast) : ""}
+  async function getCO2fromFB(){
+    return new Promise((resolve, reject) =>{
+      getCO2FB((data) =>{
+        if(data){
 
-      )
-    })
-  }
+          setNow(data)
+        }else{
+          reject(new Error)
+        }
 
-  async function getCO2() {
-    return new Promise((resolve, reject) => {
-      getCO2FB((datalast) => {
-        datalast ? resolve(datalast) : ""
       })
     })
   }
 
+  async function getLastFromFB(){
+    return new Promise((resolve, reject) =>{
+      getCO2OverTimeFB((data) =>{
+        if(data){
 
+          setLast(data)
+        }else{
+          reject(new Error)
+        }
+
+      })
+    })
+  }
 
   return (
       <>

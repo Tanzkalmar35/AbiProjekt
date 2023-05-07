@@ -293,13 +293,13 @@ export function makeTimeStamp(data){
 
 
 
-  console.log(data)
 
-  set(ref(db, "/Arduino/devices/random_id/CO2OverTime/zero"),data[0] )
-  set(ref(db, "/Arduino/devices/random_id/CO2OverTime/one"),data[1])
-  set(ref(db, "/Arduino/devices/random_id/CO2OverTime/two"),data[2] )
-  set(ref(db, "/Arduino/devices/random_id/CO2OverTime/three"),data[3] )
-  set(ref(db, "/Arduino/devices/random_id/CO2OverTime/four"),data[4] )
+
+  set(ref(db, "/Arduino/devices/random_id/CO2OverTime/zero"),data.zero )
+  set(ref(db, "/Arduino/devices/random_id/CO2OverTime/one"),data.one)
+  set(ref(db, "/Arduino/devices/random_id/CO2OverTime/two"),data.two )
+  set(ref(db, "/Arduino/devices/random_id/CO2OverTime/three"),data.three )
+  set(ref(db, "/Arduino/devices/random_id/CO2OverTime/four"),data.four )
 
 
 
@@ -308,19 +308,20 @@ export function makeTimeStamp(data){
 
 export async function getCO2FB(callback) {
   const statref = ref(db, "/Arduino/devices/random_id/current_data/CO2");
-  let CO2 = [];
+  let co2 = [];
   onValue(statref, (snapshot) => {
-    CO2 = snapshot.val()
+    co2 = snapshot.val()
   });
 
-  callback(CO2)
+  callback(co2)
 }
 
-export  async function getCO2OverTimeFB(callback) {
+export async function getCO2OverTimeFB(callback) {
   const statref = ref(db, "/Arduino/devices/random_id/CO2OverTime/");
   let CO2OverTime = [];
   onValue(statref, (snapshot) => {
-    CO2OverTime = [...snapshot.val()]
+      let data = snapshot.val();
+      CO2OverTime = [data.zero, data.one, data.two, data.three, data.four]
   });
 
   callback(CO2OverTime)

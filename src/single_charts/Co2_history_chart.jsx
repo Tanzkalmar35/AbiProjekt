@@ -2,18 +2,18 @@ import React from "react";
 import Line_chart from "../diagramm_components/line/line_chart";
 import { useState } from "react";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
-import { get_CO2_overtime } from "../db";
+import {get_CO2_overtime, getCO2OverTimeFB} from "../db";
 
 
 
 function Co2_history_chart() {
   chartjs.register(ArcElement, Tooltip, Legend);
-
+  let countdown = 1000;
   //Alway get the current time as an array
   const [time, setTime] = useState(get_time);
 
   //This date will be pulled from Firebase
-  const [current_data, setCurrentData] = useState([0,0,0,0,0]);
+  const [current_data, setCurrentData] = useState([]);
 
   const [options_for_chart, setoptions_for_chart] = useState({
     options: {
@@ -27,7 +27,7 @@ function Co2_history_chart() {
           callbacks: {
             label: (context) => {
               
-              return "CO2 Percentage:" + context.raw + "%";
+              return "CO2 Percentage:" + context.raw * 1000 + "%";
             },
           },
         },
@@ -54,8 +54,10 @@ function Co2_history_chart() {
 
   //update the chart dynamically
   setTimeout(async () => {
+    countdown = 60000;
     setTime(get_time);
     setCurrentData( await get_Data());
+
     setChart({
       labels: time,
       datasets: [
@@ -69,15 +71,15 @@ function Co2_history_chart() {
       options: options_for_chart
     });
 
-  }, 1000);
+  }, countdown);
 
   //This function is deleting the first element of the array and adds a new one at the end
 
-  function get_Data() {
+  async function get_Data() {
     return new Promise((resolve, reject) => {
-      get_CO2_overtime((data) => {
+      getCO2OverTimeFB((data) => {
         if (data) {
-          resolve(data);
+          resolve(data.reverse());
         } else {
           console.log("No data");
           resolve([]);
@@ -106,6 +108,12 @@ function Co2_history_chart() {
 
 
     ];
+  }
+
+  async  function startUp(){
+
+      setCurrentData(await get_Data());
+
   }
 
   return (
