@@ -10,18 +10,9 @@ export default function Table({ Data }) {
   Data[3] = CO2
   */
   //console.log(Data);
-  const [o2_level, setO2_level] = React.useState("");
+  const [o2_level, setO2_level] = React.useState("Good");
   const [N2_level, setN2_level] = React.useState("");
   const [Co2_level, setCO2_level] = React.useState("");
-  
-  
-  React.useEffect(() => {
-    if (Data.O2 > 19.5 && Data.O2 < 23.5) {
-      setO2_level("Good");
-    } else {
-      setO2_level("Bad");
-    }
-  }, [Data.O2]);
 
   React.useEffect(() => {
     if (Data.N2 > 77 && Data.N2 < 80) {
@@ -63,7 +54,7 @@ export default function Table({ Data }) {
           <tr>
             <td className="pr-10 bg-slate-500">O2</td>
             <td className="pr-10 bg-slate-500">{Data.O2}%</td>
-            <td className={check(o2_level)}>{o2_level}</td>
+            <td className={check(o2_level)}>{"20%"}</td>
           </tr>
           <tr>
             <td className="pr-10 bg-slate-500">N2</td>

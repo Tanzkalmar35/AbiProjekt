@@ -223,16 +223,17 @@ export function getLastWeek(callback) {
 }
 
 export function getTempLast5Min(callback) {
-  const statref = ref(db, "/Arduino/devices/random_id/Temp");
-  let TempOvertime = {};
+  const statref = ref(db, "/Arduino/devices/random_id/TempOverTime");
+  let TempOvertime = [];
 
   onValue(statref, (snapshot) => {
     let alldata = snapshot.val();
-    TempOvertime["FourMinutes"] = alldata.Now;
-    TempOvertime["ThreeMinutes"] = alldata.Now;
-    TempOvertime["TwoMinutes"] = alldata.Now;
-    TempOvertime["OneMinutes"] = alldata.Now;
-    TempOvertime["Now"] = alldata.Now;
+    TempOvertime.push(alldata.zero);
+    TempOvertime.push(alldata.one);
+    TempOvertime.push(alldata.two);
+    TempOvertime.push(alldata.three);
+    TempOvertime.push(alldata.four);
+
   });
 
   callback(TempOvertime);
@@ -325,4 +326,14 @@ export async function getCO2OverTimeFB(callback) {
   });
 
   callback(CO2OverTime)
+}
+
+export async function getSingleData( callback) {
+  const startref = ref(db, "/Arduino/devices/random_id/Temp/Now")
+  let data1 = []
+  onValue(startref, (snapshot) => {
+    data1 = snapshot.val();
+  })
+
+  callback(data1)
 }
