@@ -8,12 +8,12 @@ const Settings = () => {
   function handleModeChange() {
     setMode(!currentColorMode)
     const app = document.getElementById("app").style.backgroundColor = currentColorMode ? "#212121" : "#fff";
-    app.style.color = currentColorMode ? "#fff" : "#212121";
+    document.getElementById("settingsPage").style.color = currentColorMode ? "#fff" : "#212121";
   }
 
   return (
     <>
-      <div className=' text-white'>
+      <div id="settingsPage" className="text-white">
         <div className='pb-10 text-center text-purple-500 text-5xl'>Settings</div>
 
         <table className=' flex justify-center mt-32 '>
