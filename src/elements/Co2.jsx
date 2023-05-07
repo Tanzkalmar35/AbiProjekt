@@ -40,10 +40,10 @@ const Co2 = () => {
 
   async function getCO2fromFB(){
     return new Promise((resolve, reject) =>{
-      getCO2FB((data) =>{
-        if(data){
+      getCO2FB((data1) =>{
+        if(data1){
 
-          setNow(data)
+          setNow(data1)
         }else{
           reject(new Error)
         }
@@ -76,7 +76,7 @@ const Co2 = () => {
 
             <div className="pt-10"><Co2_future_chart></Co2_future_chart></div>
           </div>
-      <div className="cols-2 pt-48">
+      <div className="cols-2 flex pt-48">
         <Co2LastWeekBar></Co2LastWeekBar>
       </div>
     </div>

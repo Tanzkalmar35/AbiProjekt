@@ -9,7 +9,7 @@ const BarChart = ({ Data, Options}) => {
   
 
   return(
-    <div className="text-5xl">
+    <div className="">
       <Bar data={Data} width={600} height={420} options={Options} />
     </div>
   )
