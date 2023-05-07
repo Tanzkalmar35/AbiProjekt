@@ -302,9 +302,6 @@ export function makeTimeStamp(data){
   set(ref(db, "/Arduino/devices/random_id/CO2OverTime/three"),data.three )
   set(ref(db, "/Arduino/devices/random_id/CO2OverTime/four"),data.four )
 
-
-
-
 }
 
 export async function getCO2FB(callback) {
