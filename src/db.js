@@ -304,6 +304,20 @@ export function makeTimeStamp(data){
 
 }
 
+export function makeTimeStampTemp(data){
+  //Make func for Temp
+
+
+
+
+  set(ref(db, "/Arduino/devices/random_id/TempOverTime/zero"),data.zero )
+  set(ref(db, "/Arduino/devices/random_id/TempOverTime/one"),data.one)
+  set(ref(db, "/Arduino/devices/random_id/TempOverTime/two"),data.two )
+  set(ref(db, "/Arduino/devices/random_id/TempOverTime/three"),data.three )
+  set(ref(db, "/Arduino/devices/random_id/TempOverTime/four"),data.four )
+
+}
+
 export async function getCO2FB(callback) {
   const statref = ref(db, "/Arduino/devices/random_id/current_data/CO2");
   let co2 = [];
