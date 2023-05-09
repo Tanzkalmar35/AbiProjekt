@@ -140,7 +140,7 @@ export function get_CO2_overtime(callback) {
   onValue(statref, (snapshot) => {
     let t = snapshot.val();
     t = t * 1000
-    
+
     data.push(
       t ,
       t,
@@ -152,22 +152,38 @@ export function get_CO2_overtime(callback) {
 }
 
 export function future_values() {
-  let statref = ref(db, "/Arduino/devices/random_id/current_data/CO2");
-  let CO;
-  onValue(statref, (snapshot) => {
-    CO = snapshot.val() * 1000;
-  });
+  const firebaseCoRef = ref(db, "/Arduino/devices/random_id/current_data/CO2");
+  let historyData = [];
 
-  const neededValues = 3;
+  /*onValue(firebaseCoRef, (snapshot) => {
+    historyData.push(snapshot.val());
+    console.log("ASDJHAJKSH  " + historyData);
+  });*/
 
-  const rise = CO - (CO - 0.01);
-  let results = [];
-  results.push(CO - 0.01, CO);
-  for (let i = 0; i < neededValues; i++) {
-    let test = results[1 + i] + rise;
-    results.push(test);
-  }
-  return results;
+  historyData.push(0.4, 0.45, 0.8, 0.4, 0.45);
+
+  return bundleFutureToArray(historyData);
+}
+
+function bundleFutureToArray(futureData) {
+  return [getFutureData(futureData, 6), getFutureData(futureData, 7),
+      getFutureData(futureData, 8), getFutureData(futureData, 9),
+      getFutureData(futureData, 10)]
+}
+
+export function getFutureData (historicalData, futureMin) {
+
+  let ty = 1 * historicalData[0] + 2 * historicalData[1] + 3 * historicalData[2] + 4 * historicalData[3] + 5 * historicalData[4];
+  let y = 1/5 * (historicalData[0] + historicalData[1] + historicalData[2] + historicalData[3] + historicalData[4]);
+  let Tyt = 5 * y * 3;
+  let t2 = 55;
+  let Tt2 = 5 * 9;
+
+  let b = (ty-Tyt) / (t2-Tt2);
+  let a = y - b * 3;
+
+  return a + b * futureMin;
+
 }
 
 export async function get_AirQualtiy(callback) {
