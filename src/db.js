@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import "firebase/app";
 
 import { getDatabase, ref, set, update, onValue } from "firebase/database";
+import {callback} from "chart.js/helpers";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyB0PjT0hCV-9QpmwxNeWz0QZwdh4iPdYQQ",
@@ -155,12 +156,7 @@ export function future_values() {
   const firebaseCoRef = ref(db, "/Arduino/devices/random_id/current_data/CO2");
   let historyData = [];
 
-  /*onValue(firebaseCoRef, (snapshot) => {
-    historyData.push(snapshot.val());
-    console.log("ASDJHAJKSH  " + historyData);
-  });*/
-
-  historyData.push(0.4, 0.45, 0.8, 0.4, 0.45);
+  historyData.push(async (callback) => {return await getCO2OverTimeFB(callback)});
 
   return bundleFutureToArray(historyData);
 }
