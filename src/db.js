@@ -163,7 +163,7 @@ export async function future_values(data, callback) {
 
 }
 
-async function getHistoryData(){
+export async function getHistoryData(){
   return new Promise((resolve, reject) => {
     getCO2OverTimeFB((datalast) => {
       datalast ? resolve(datalast) : reject(new Error)

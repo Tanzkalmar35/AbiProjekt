@@ -2,7 +2,7 @@ import React from "react";
 import Line_chart from "../diagramm_components/line/line_chart";
 import { useState } from "react";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
-import {get_CO2_overtime, future_values, getCO2FB} from "../db";
+import {get_CO2_overtime, future_values, getCO2FB, getHistoryData} from "../db";
 
 
 function Co2_future_chart() {
@@ -11,6 +11,7 @@ function Co2_future_chart() {
   const [Data, setData] = React.useState([]);
 
   const [ChartLabels, setChartLabels] = React.useState(["1", "2", "3", "4", "5"]);
+  const [HisData, setHHisData] = React.useState([0.4, 0.45,0.4, 0.5])
 
   const [ChartDataSet, setChartDataSet] = React.useState({
     labels: ChartLabels,
@@ -45,7 +46,8 @@ function Co2_future_chart() {
   };
 
   setTimeout(async () => {
-    setData(await getfutureValues());
+    setHHisData(await getHisData() )
+    setData(await getFutureValues(HisData));
     
       setChartDataSet({
         labels: ChartLabels,
@@ -62,9 +64,17 @@ function Co2_future_chart() {
     
   }, 1000);
 
-  async function getfutureValues() {
+  async function getFutureValues() {
     return new Promise((resolve, reject) => {
       future_values((datalast) => {
+        datalast ? resolve(datalast) : reject(new Error)
+      })
+    })
+  }
+
+  async function getHisData() {
+    return new Promise((resolve, reject) => {
+      getHistoryData((datalast) => {
         datalast ? resolve(datalast) : reject(new Error)
       })
     })
