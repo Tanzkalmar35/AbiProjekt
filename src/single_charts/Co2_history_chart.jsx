@@ -2,7 +2,7 @@ import React from "react";
 import Line_chart from "../diagramm_components/line/line_chart";
 import { useState } from "react";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
-import {get_CO2_overtime, getCO2OverTimeFB} from "../db";
+import { getCO2OverTimeFB} from "../db";
 
 
 

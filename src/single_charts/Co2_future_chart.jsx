@@ -2,7 +2,7 @@ import React from "react";
 import Line_chart from "../diagramm_components/line/line_chart";
 import { useState } from "react";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
-import {get_CO2_overtime, future_values, getCO2FB, getHistoryData} from "../db";
+import { future_values, getCO2FB, getHistoryData} from "../db";
 
 
 function Co2_future_chart() {
@@ -46,9 +46,12 @@ function Co2_future_chart() {
   };
 
   setTimeout(async () => {
-    setHHisData(await getHisData() )
-    setData(await getFutureValues(HisData));
-    
+
+
+    setData(await getFutureValues( (data) => {
+      if(data){return data}
+    }));
+    console.log(Data)
       setChartDataSet({
         labels: ChartLabels,
         datasets: [
@@ -64,21 +67,19 @@ function Co2_future_chart() {
     
   }, 1000);
 
+  setTimeout(async () => {
+    setHHisData(await getHistoryData())
+  }, 1000)
+
   async function getFutureValues() {
     return new Promise((resolve, reject) => {
-      future_values((datalast) => {
-        datalast ? resolve(datalast) : reject(new Error)
+      future_values(HisData,(data) => {
+        data ? resolve(data) : reject(new Error)
       })
     })
   }
 
-  async function getHisData() {
-    return new Promise((resolve, reject) => {
-      getHistoryData((datalast) => {
-        datalast ? resolve(datalast) : reject(new Error)
-      })
-    })
-  }
+
   return (
     <Line_chart
       trigger={true}

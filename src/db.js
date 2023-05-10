@@ -117,48 +117,17 @@ export function get_current_data(randomId, callback) {
   });
 }
 
-function calculate(temp, rh) {
-  let a = 17.27;
 
-  let b = 237.7;
-  /*
-  The values for a and b are commonly used 
-  in the equation to calculate the dew point. 
-  These values come from the Magnus-Tetens approximation formula, 
-  which is commonly used in meteorology and weather forecasting.
-  */
 
-  let gamma = (a * temp) / (b + temp) + Math.log(rh / 100);
-  let dp = (b * gamma) / (a - gamma);
-  return dp.toFixed(2);
-}
-
-export function get_CO2_overtime(callback) {
-  let statref = ref(db, "/Arduino/devices/random_id/co2ppm/pmm");
-
-  let data = [];
-
-  onValue(statref, (snapshot) => {
-    let t = snapshot.val();
-    t = t * 1000
-
-    data.push(
-      t ,
-      t,
-      t,t,t
-    );
-  });
-
-  callback(data);
-}
 
 export async function future_values(data, callback) {
   const firebaseCoRef = ref(db, "/Arduino/devices/random_id/current_data/CO2");
   let historyData = [];
 
-  historyData = [...data]
-
-  callback (bundleFutureToArray(historyData));
+  historyData.push(data)
+  console.log(bundleFutureToArray(historyData, 1))
+  historyData = [...bundleFutureToArray([historyData[0] * 1000,historyData[1] * 1000,historyData[2] * 1000,historyData[3] * 1000,historyData[4] * 1000,])]
+  callback(historyData);
 
 
 }
@@ -172,9 +141,12 @@ export async function getHistoryData(){
 }
 
 function bundleFutureToArray(futureData) {
-  return [getFutureData(futureData, 6), getFutureData(futureData, 7),
-      getFutureData(futureData, 8), getFutureData(futureData, 9),
-      getFutureData(futureData, 10)]
+  return [
+      getFutureData(futureData, 1),
+      getFutureData(futureData, 2),
+      getFutureData(futureData, 3),
+      getFutureData(futureData, 4),
+      getFutureData(futureData, 5)]
 }
 
 export function getFutureData (historicalData, futureMin) {
@@ -187,7 +159,7 @@ export function getFutureData (historicalData, futureMin) {
 
   let b = (ty-Tyt) / (t2-Tt2);
   let a = y - b * 3;
-
+  console.log( a + b * futureMin)
   return a + b * futureMin;
 
 }
