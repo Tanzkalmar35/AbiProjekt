@@ -152,13 +152,30 @@ export function get_CO2_overtime(callback) {
   callback(data);
 }
 
-export function future_values() {
+export async function future_values(callback) {
   const firebaseCoRef = ref(db, "/Arduino/devices/random_id/current_data/CO2");
   let historyData = [];
 
-  historyData.push(async (callback) => {return await getCO2OverTimeFB(callback)});
+  historyData = [...async () => { await getHistoryData(
+      (data) => {
+        if(data){
+          console.log(data )
+          return data;
+        }
+      }
+  )}]
 
-  return bundleFutureToArray(historyData);
+  callback (bundleFutureToArray(historyData));
+
+
+}
+
+async function getHistoryData(){
+  return new Promise((resolve, reject) => {
+    getCO2OverTimeFB((datalast) => {
+      datalast ? resolve(datalast) : reject(new Error)
+    })})
+
 }
 
 function bundleFutureToArray(futureData) {

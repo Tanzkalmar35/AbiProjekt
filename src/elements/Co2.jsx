@@ -34,7 +34,7 @@ const Co2 = () => {
   function merge(){
 
     let data = {"zero" : now, "one" : last[0], "two" : last[1],"three" : last[2], "four" : last[3]}
-    console.log(data)
+
     makeTimeStamp(data)
   }
 
