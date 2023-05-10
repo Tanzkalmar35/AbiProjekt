@@ -62,7 +62,7 @@ function Co2_future_chart() {
     
   }, 1000);
 
-  function getfutureValues() {
+  async function getfutureValues() {
     return new Promise((resolve, reject) => {
       future_values((datalast) => {
         datalast ? resolve(datalast) : reject(new Error)

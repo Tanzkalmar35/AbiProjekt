@@ -152,18 +152,11 @@ export function get_CO2_overtime(callback) {
   callback(data);
 }
 
-export async function future_values(callback) {
+export async function future_values(data, callback) {
   const firebaseCoRef = ref(db, "/Arduino/devices/random_id/current_data/CO2");
   let historyData = [];
 
-  historyData = [...async () => { await getHistoryData(
-      (data) => {
-        if(data){
-          console.log(data )
-          return data;
-        }
-      }
-  )}]
+  historyData = [...data]
 
   callback (bundleFutureToArray(historyData));
 
