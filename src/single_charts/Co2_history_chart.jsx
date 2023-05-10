@@ -3,6 +3,7 @@ import Line_chart from "../diagramm_components/line/line_chart";
 import { useState } from "react";
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
 import { getCO2OverTimeFB} from "../db";
+import {rounded} from "./Funticons_for_charts.js";
 
 
 
@@ -27,7 +28,7 @@ function Co2_history_chart() {
           callbacks: {
             label: (context) => {
               
-              return "CO2 Percentage:" + context.raw * 1000 + "%";
+              return "CO2 Percentage:" + rounded(context.raw * 1000) + "%";
             },
           },
         },
@@ -88,7 +89,7 @@ function Co2_history_chart() {
     });
   }
 
-  /*THis function is getting the current time and makes a array where the first 
+  /*THis function is getting the current time and makes an array where the first
      element is the current time and following elements 
      are the current data + minutes*/
 
