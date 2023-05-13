@@ -25,7 +25,7 @@ const Settings = () => {
             </tr>
             <tr>
               <td className='pt-10 pr-10 text-5xl'>Help</td>
-              <td className='pt-10 text-5xl'><button>Help will be added later</button></td>
+              <td className='pt-10 text-5xl'><button>Nothing can help you anymore...</button></td>
             </tr>
           </tbody>
         </table>
