@@ -127,6 +127,7 @@ export async function future_values(data, callback) {
   historyData.push(data)
   console.log(bundleFutureToArray(historyData, 1))
   historyData = [...bundleFutureToArray([historyData[0] * 1000,historyData[1] * 1000,historyData[2] * 1000,historyData[3] * 1000,historyData[4] * 1000,])]
+
   callback(historyData);
 
 
@@ -142,11 +143,11 @@ export async function getHistoryData(){
 
 function bundleFutureToArray(futureData) {
   return [
-      getFutureData(futureData, 1),
-      getFutureData(futureData, 2),
-      getFutureData(futureData, 3),
-      getFutureData(futureData, 4),
-      getFutureData(futureData, 5)]
+      getFutureData(futureData, 6),
+      getFutureData(futureData, 7),
+      getFutureData(futureData, 8),
+      getFutureData(futureData, 9),
+      getFutureData(futureData, 10)]
 }
 
 export function getFutureData (historicalData, futureMin) {
