@@ -124,8 +124,9 @@ export async function future_values(data, callback) {
   const firebaseCoRef = ref(db, "/Arduino/devices/random_id/current_data/CO2");
   let historyData = [];
 
-  historyData.push(data)
-  console.log(bundleFutureToArray(historyData, 1))
+  //historyData.push(data)
+  historyData = [...data]
+  console.log(bundleFutureToArray(historyData))
   historyData = [...bundleFutureToArray([historyData[0] * 1000,historyData[1] * 1000,historyData[2] * 1000,historyData[3] * 1000,historyData[4] * 1000,])]
 
   callback(historyData);
