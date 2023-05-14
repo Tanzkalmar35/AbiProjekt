@@ -105,7 +105,8 @@ function Co2_history_chart() {
       hours + ":" + (minutes - 4),
       hours + ":" + (minutes - 3),
       hours + ":" + (minutes - 2),
-      hours + ":" +
+      hours + ":" +(minutes - 2),
+      hours + ":" +(minutes - 1),
       hours + ":" + minutes
 
 
