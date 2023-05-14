@@ -126,7 +126,7 @@ export async function future_values(data, callback) {
 
   //historyData.push(data)
   historyData = [...data]
-  console.log(bundleFutureToArray(historyData))
+  //console.log(bundleFutureToArray(historyData))
   historyData = [...bundleFutureToArray([historyData[0] * 1000,historyData[1] * 1000,historyData[2] * 1000,historyData[3] * 1000,historyData[4] * 1000,])]
 
   callback(historyData);
@@ -273,25 +273,8 @@ function checkDay(Date){
  
 }
 
-export function future_data () {
-
-
-let b = (ty-Tyt)/(t2-Tt2);
-let ty = 1 * data1 + 2 * data2 + 3 * data3 + 4 * data4 + 5* data5;
-let Tyt = 5 * y *3;
-let y = 1/5 * (data1 + data2 + data3 + data4 + data5);
-let t2 = 55;
-let Tt2 = 5 * 9;
-let a = y - b * 3;
-let mt = a + b*minute;
-}
-
 export function makeTimeStamp(data){
   //Make func for Temp
-
-
-
-
   set(ref(db, "/Arduino/devices/random_id/CO2OverTime/zero"),data.zero )
   set(ref(db, "/Arduino/devices/random_id/CO2OverTime/one"),data.one)
   set(ref(db, "/Arduino/devices/random_id/CO2OverTime/two"),data.two )
@@ -302,10 +285,6 @@ export function makeTimeStamp(data){
 
 export function makeTimeStampTemp(data){
   //Make func for Temp
-
-
-
-
   set(ref(db, "/Arduino/devices/random_id/TempOverTime/zero"),data.zero )
   set(ref(db, "/Arduino/devices/random_id/TempOverTime/one"),data.one)
   set(ref(db, "/Arduino/devices/random_id/TempOverTime/two"),data.two )
