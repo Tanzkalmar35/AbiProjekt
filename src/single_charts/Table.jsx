@@ -53,8 +53,8 @@ export default function Table({ Data }) {
           </tr>
           <tr>
             <td className="pr-10 bg-slate-500">O2</td>
-            <td className="pr-10 bg-slate-500">{Data.O2}%</td>
-            <td className={check(o2_level)}>{"20%"}</td>
+            <td className="pr-10 bg-slate-500">20%%</td>
+            <td className={check(o2_level)}>{"Good"}</td>
           </tr>
           <tr>
             <td className="pr-10 bg-slate-500">N2</td>

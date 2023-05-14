@@ -72,7 +72,7 @@ export default function TempChart() {
         datasets: [
             {
                 data: TempLast5Min,
-                backgroundColor: "#660066",
+                backgroundColor: "#F20000",
                 borderWidth: 3
 
 
@@ -92,7 +92,7 @@ export default function TempChart() {
                 {
                     label: "Temperature in the last 5 minutes",
                     data: TempLast5Min,
-                    backgroundColor: "#660066",
+                    backgroundColor: "#F20000",
                     borderWidth: 4
 
 
