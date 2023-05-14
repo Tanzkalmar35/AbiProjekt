@@ -28,7 +28,7 @@ function Co2_history_chart() {
           callbacks: {
             label: (context) => {
               
-              return "CO2 Percentage:" + rounded(context.raw * 100 ) + "%";
+              return "CO2 Percentage:" + rounded(context.raw * 1000 ) + "%";
             },
           },
         },
@@ -105,7 +105,7 @@ function Co2_history_chart() {
       hours + ":" + (minutes - 4),
       hours + ":" + (minutes - 3),
       hours + ":" + (minutes - 2),
-      hours + ":" + (minutes - 1),
+      hours + ":" +
       hours + ":" + minutes
 
 
