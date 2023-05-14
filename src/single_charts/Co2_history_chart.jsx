@@ -9,12 +9,12 @@ import {rounded} from "./Funticons_for_charts.js";
 
 function Co2_history_chart() {
   chartjs.register(ArcElement, Tooltip, Legend);
-  let countdown = 1000;
+  const [countdown , setCountdown] = React.useState(60000) ;
   //Alway get the current time as an array
   const [time, setTime] = useState(get_time);
 
   //This date will be pulled from Firebase
-  const [current_data, setCurrentData] = useState([]);
+  const [current_data, setCurrentData] = React.useState([0.004,0.0041,0.0041,0.0042,0.004])
 
   const [options_for_chart, setoptions_for_chart] = useState({
     options: {
@@ -28,7 +28,7 @@ function Co2_history_chart() {
           callbacks: {
             label: (context) => {
               
-              return "CO2 Percentage:" + rounded(context.raw * 1000) + "%";
+              return "CO2 Percentage:" + rounded(context.raw * 100 ) + "%";
             },
           },
         },
@@ -53,11 +53,13 @@ function Co2_history_chart() {
     options: options_for_chart,
   });
 
+  setTimeout( async () => {setCurrentData( await get_Data());}, 60000)
+
   //update the chart dynamically
-  setTimeout(async () => {
-    countdown = 60000;
+  React.useEffect( () => {
+
     setTime(get_time);
-    setCurrentData( await get_Data());
+
 
     setChart({
       labels: time,
@@ -73,7 +75,7 @@ function Co2_history_chart() {
       options: options_for_chart
     });
 
-  }, countdown);
+  }, [current_data]);
 
   //This function is deleting the first element of the array and adds a new one at the end
 

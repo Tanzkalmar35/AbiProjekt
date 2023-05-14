@@ -51,7 +51,7 @@ function Co2_future_chart() {
     setData(await getFutureValues( (data) => {
       if(data){return data}
     }));
-    console.log(Data)
+
       setChartDataSet({
         labels: ChartLabels,
         datasets: [
@@ -65,11 +65,11 @@ function Co2_future_chart() {
         ],
       })
     
-  }, 1000);
+  }, 10000);
 
   setTimeout(async () => {
     setHHisData(await getHistoryData())
-  }, 1000)
+  }, 10000)
 
   async function getFutureValues() {
     return new Promise((resolve, reject) => {
