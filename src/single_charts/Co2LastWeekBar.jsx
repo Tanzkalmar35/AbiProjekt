@@ -38,6 +38,7 @@ function Co2LastWeekBar() {
     }
     //await function for Data of the last week
     function readLastWeek() {
+        
         return new Promise((resolve, reject) => {
             getCO2FB((datalast) => {
                 datalast ? resolve(datalast) : reject(new Error)
