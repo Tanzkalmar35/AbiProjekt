@@ -64,7 +64,7 @@ function Co2_history_chart() {
       datasets: [
         {
           data: [current_data[4], current_data[3], current_data[2], current_data[1],current_data[0]],
-          data: [current_data[4], current_data[3], current_data[2], current_data[1],current_data[0]],
+
           label: "CO2 Hisotry chart",
           borderColor: "#0000ff",
           borderWidth: 3,
