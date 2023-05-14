@@ -1,9 +1,10 @@
 import React from 'react'
-import Barchart from '../diagramm_components/bar/bar_chart.jsx'
+
 import {getCO2FB, getLastWeek} from '../db.js';
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
-import { checkDay } from './Funticons_for_charts.js';
+
 import {Bar} from "react-chartjs-2";
+import {rounded} from "./Funticons_for_charts.js";
 function Co2LastWeekBar() {
     chartjs.register(ArcElement, Tooltip, Legend);
     const [DataLastWeek, setDataLastWeek] = React.useState({})
@@ -17,8 +18,8 @@ function Co2LastWeekBar() {
                 tooltip: {
                     callbacks: {
                         label: (context) => {
-                           return checkDay(context.dataIndex, context.raw)
-                           
+                           return rounded(context.raw * 1000) + "%"
+
 
                         },
 
@@ -50,8 +51,8 @@ function Co2LastWeekBar() {
             datasets: [
                 {
                     data: DataLastWeek,
-                    backgroundColor: "#660066",
-                    borderWidth: 4,
+                    backgroundColor: "#2C2F34",
+                    borderWidth: 5,
                     label : "CO2 Now"
 
                 },
@@ -69,8 +70,8 @@ function Co2LastWeekBar() {
             {
                 data: DataLastWeek,
                 backgroundColor: "#660066",
-                borderWidth: 3
-
+                borderWidth: 3,
+                label : "CO2 Now"
 
             },
         ],
