@@ -162,7 +162,7 @@ export function getFutureData (historicalData, futureMin) {
   let b = (ty-Tyt) / (t2-Tt2);
   let a = y - b * 3;
 
-  return a + b * futureMin;
+  return a - b * futureMin;
 
 }
 

@@ -24,6 +24,16 @@ export function TempCheck(val){
     return "ml-10 bg-red-500";
 
   }
+}export function TempStatus(val){
+  if(val >= 18 && val <= 24 ){
+    return "Good";
+  }else if(val > 24){
+    return "Too Warm";
+
+  }else if(val < 17) {
+    return "Too cold";
+}
+
 }
 
 export function checkDay(index, value){

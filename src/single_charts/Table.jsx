@@ -1,5 +1,5 @@
 import React from "react";
-import { TempCheck, check, rounded } from "./Funticons_for_charts";
+import { TempCheck, check, rounded, TempStatus } from "./Funticons_for_charts";
 import { get_AirQualtiy, getRH } from "../db";
 
 export default function Table({ Data }) {
@@ -53,7 +53,7 @@ export default function Table({ Data }) {
           </tr>
           <tr>
             <td className="pr-10 bg-slate-500">O2</td>
-            <td className="pr-10 bg-slate-500">20%%</td>
+            <td className="pr-10 bg-slate-500">20%</td>
             <td className={check(o2_level)}>{"Good"}</td>
           </tr>
           <tr>
@@ -76,7 +76,7 @@ export default function Table({ Data }) {
           <tr>
             <td className="pr-10 bg-slate-500 ">Temp</td>
             <td className="pr-10  bg-slate-500">{Data.Temp + "°C"}</td>
-            <td className={TempCheck(Data.Temp)}></td>
+            <td className={TempCheck(Data.Temp)}>{TempStatus(Data.Temp)}</td>
           </tr>
           </tbody>
         </table>
