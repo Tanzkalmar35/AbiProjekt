@@ -148,7 +148,8 @@ function bundleFutureToArray(futureData) {
       getFutureData(futureData, 7),
       getFutureData(futureData, 8),
       getFutureData(futureData, 9),
-      getFutureData(futureData, 10)]
+      getFutureData(futureData, 10)
+  ]
 }
 
 export function getFutureData (historicalData, futureMin) {

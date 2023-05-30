@@ -13,7 +13,7 @@ const Personinfo = ({Name, PersonalInfo, Picture }) => {
 
     return  (
     <div className="">
-        <div className="card card-side bg-base-100 shadow-xl">
+        <div className="h-[30vh] card card-side bg-base-100 shadow-xl mt-5">
 
             <figure><img alt="profile picture" src={Picture} className="w-[200px] h-[100%]" /></figure>
             <div className="card-body text-left">
