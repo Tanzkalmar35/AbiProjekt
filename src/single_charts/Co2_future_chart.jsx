@@ -6,6 +6,7 @@ import { future_values, getCO2FB, getHistoryData} from "../db";
 
 
 function Co2_future_chart() {
+  
   chartjs.register(ArcElement, Tooltip, Legend);
 
   const [Data, setData] = React.useState([]);
