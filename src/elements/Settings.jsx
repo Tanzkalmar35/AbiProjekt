@@ -27,6 +27,10 @@ const Settings = () => {
               <td className='pt-10 pr-10 text-5xl'>Help</td>
               <td className='pt-10 text-5xl'><button>Nothing can help you anymore...</button></td>
             </tr>
+            <tr>
+              <td className='pt-10 pr-10 text-5xl'>AirIndex</td>
+              <td className='pt-10 pr-10 text-5xl'><ul><li>1 = Good</li><li>2 = Medium</li><li>3 = Bad</li><li>4 = Really Bad</li></ul></td>
+            </tr>
           </tbody>
         </table>
       </div>
