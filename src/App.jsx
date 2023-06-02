@@ -29,8 +29,9 @@ const App = () => {
       <div id="app" className="flex overflow-hidden bg-[#212121]" >
         <NavContext.Provider value={value}>
           <Navbar />
-          <Container 
+          <Container
             content={
+
               <Routes>
                 <Route path="/dashboard" element={<Dashboard  />} />
                 <Route path="/co2" element={<Co2 />} />
