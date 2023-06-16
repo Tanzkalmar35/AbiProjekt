@@ -12,7 +12,7 @@ const Info = () =>{
                <tr>
                    <td className="pl-5 pr-5"><Personinfo PersonalInfo={["Age: 18", "Tasks:", " Builden the WebApp,", "Setting up the Arduino,", "Designing the Charts with Chartjs", "Role: Programmer"]} Name={"Nick Hillmann"} Picture={"/src/assets/Nick03.jpeg"}></Personinfo>
                    </td>
-                   <td className="pl-5 pr-5"><Personinfo PersonalInfo={["Age: 18", "Tasks:", "Dokumentation,", "Prognosefunktion (Berechnung),", "Design Templates", "Role: Teamleader"]} Name={"Jarno Calise"} Picture={"/src/assets/JarnoProf.jpeg"}></Personinfo>
+                   <td className="pl-5 pr-5"><Personinfo PersonalInfo={["Age: 18", "Tasks:", "Dokumentation,", "Prognosefunktion (Berechnung),", "Design Templates", "Role: Teamleader"]} Name={"Jarno Callies"} Picture={"/src/assets/JarnoProf.jpeg"}></Personinfo>
                    </td>
                </tr>
                <tr>

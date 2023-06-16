@@ -24,7 +24,7 @@ export default function Table({ Data }) {
 
 
   React.useEffect(() => {
-    if (Data.CO2 > 0 && Data.CO2 < 5) {
+    if (Data.CO2 > 0 && Data.CO2 < 0.6) {
       setCO2_level("Good");
     } else {
       setCO2_level("Bad");
