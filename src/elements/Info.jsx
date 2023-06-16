@@ -12,13 +12,13 @@ const Info = () =>{
                <tr>
                    <td className="pl-5 pr-5"><Personinfo PersonalInfo={["Age: 18", "Tasks:", " Builden the WebApp,", "Setting up the Arduino,", "Designing the Charts with Chartjs", "Role: Programmer"]} Name={"Nick Hillmann"} Picture={"/src/assets/Nick03.jpeg"}></Personinfo>
                    </td>
-                   <td className="pl-5 pr-5"><Personinfo PersonalInfo={["Age: 18", "Tasks:", "Dokumentation,", "Prognosefunktion (Berechnung),", "Design Templates", "Role: Teamleader"]} Name={"Jarno Callies"} Picture={"/src/assets/JarnoProf.jpeg"}></Personinfo>
+                   <td className="pl-5 pr-5"><Personinfo PersonalInfo={["Age: 18", "Tasks:", "Documentation,", "Forecast function (calculation),", "Design Templates", "Role: Teamleader"]} Name={"Jarno Callies"} Picture={"/src/assets/JarnoProf.jpeg"}></Personinfo>
                    </td>
                </tr>
                <tr>
-                   <td className="pl-5 pr-5"><Personinfo PersonalInfo={["Age: 21", "Tasks:", "Marketing,", "Design,", "Investor", "Role: Finazmanger"]} Name={"Marc Müller"} Picture={"/src/assets/MarcProf.jpeg"}></Personinfo>
+                   <td className="pl-5 pr-5"><Personinfo PersonalInfo={["Age: 22", "Tasks:", "Marketing,", "Design,", "Investor", "Role: Finanzmanger"]} Name={"Marc Müller"} Picture={"/src/assets/MarcProf.jpeg"}></Personinfo>
                    </td>
-                   <td className="pl-5 pr-5"><Personinfo PersonalInfo={["Age: 18,", "Tasks:" ,"Cleaning code,","Coding the App Layout", "Code debugging", "Role in this team: programmer"]} Name={"Fabian Holler"} Picture={"/src/assets/FabianProf.png"}></Personinfo>
+                   <td className="pl-5 pr-5"><Personinfo PersonalInfo={["Age: 18,", "Tasks:" ,"Cleaning code,","Coding the App Layout", "Code debugging", "Role: Programmer"]} Name={"Fabian Holler"} Picture={"/src/assets/FabianProf.png"}></Personinfo>
                    </td>
                </tr>
                </tbody>
