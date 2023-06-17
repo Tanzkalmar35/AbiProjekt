@@ -68,7 +68,7 @@ export default function TempChart() {
     const [data, setData] = React.useState({
         //this will be late read from the database
 
-        labels: ["Four Minutes", "Three Minutes", "Two Minutes", "One Minutes", "Now"],
+        labels: ["Four Minutes", "Three Minutes", "Two Minutes", "One Minute", "Now"],
         datasets: [
             {
                 data: TempLast5Min,
@@ -87,7 +87,7 @@ export default function TempChart() {
     React.useEffect(() => {
         console.log(now)
         setData({
-            labels: ["Four Minutes", "Three Minutes", "Two Minutes", "One Minutes", "Now"],
+            labels: ["Four Minutes", "Three Minutes", "Two Minutes", "One Minute", "Now"],
             datasets: [
                 {
                     label: "Temperature in the last 5 minutes",

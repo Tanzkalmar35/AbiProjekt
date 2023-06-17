@@ -28,13 +28,13 @@ export default function RHChart() {
     const [data, setData] = React.useState({
         //this will be late read from the database
 
-        labels: ["Four Minutes", "Three Minutes", "Two Minutes", "One Minutes", "Now"],
+        labels: ["Four Minutes", "Three Minutes", "Two Minutes", "One Minute", "Now"],
         datasets: [
             {
                 data: DataLastWeek,
                 backgroundColor: "#0211D6",
                 borderWidth: 4,
-                label: "RH in the Last 5 Min"
+                label: "RH in the last 5 Minutes"
 
 
             },
