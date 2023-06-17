@@ -44,7 +44,7 @@ function Co2_history_chart() {
       {
         //Those are the points in the chart
         data: current_data,
-        label: "CO2 Hisotry chart",
+        label: "CO2 History chart",
 
         borderColor: "#0000ff",
         borderWidth: 3,
@@ -66,7 +66,7 @@ function Co2_history_chart() {
       datasets: [
         {
           data: [...current_data],
-          label: "CO2 Hisotry chart",
+          label: "CO2 History chart",
           borderColor: "#0000ff",
           borderWidth: 3,
         },
