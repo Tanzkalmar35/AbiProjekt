@@ -1,7 +1,7 @@
 import React from 'react'
 import BarChart from '../diagramm_components/bar/bar_chart'
 import { Chart as chartjs, ArcElement, Tooltip, Legend } from "chart.js/auto";
-import {getSingleData, getTempLast5Min, makeTimeStamp, makeTimeStampTemp} from '../db'
+import {getSingleData, getTempLast5Min, getTempNow, makeTimeStamp, makeTimeStampTemp} from '../db'
 export default function TempChart() {
     chartjs.register(ArcElement, Tooltip, Legend);
 
@@ -24,14 +24,11 @@ export default function TempChart() {
     }
 
     async function readLast5Min() {
-        return new Promise((resolve, reject) => {
-            getTempLast5Min((datalast) => {
-                datalast ? resolve(datalast) : reject(new Error)
-            })
-        })
+        let data =  await getTempLast5Min()
+        return data
     }
     async function  readTempNow() {
-         let data = await getTempLast5Min()
+         let data = await getTempNow()
 
          return data
      }

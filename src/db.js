@@ -225,26 +225,23 @@ export async function getTempLast5Min() {
 
   await onValue(statref, (snapshot) => {
     let alldata = snapshot.val();
-    TempOvertime.push(alldata.zero);
-    TempOvertime.push(alldata.one);
-    TempOvertime.push(alldata.two);
-    TempOvertime.push(alldata.three);
-    TempOvertime.push(alldata.four);
+    console.log(snapshot.val())
+    TempOvertime = [alldata.zero, alldata.one, alldata.two, alldata.three, alldata.four]
 
   });
-  console.log(TempOvertime)
+
   return TempOvertime;
 }
 
-export function getTempNow(callback) {
+export async function getTempNow(callback) {
   const statref = ref(db, "/Arduino/devices/random_id/Temp/Now");
   let getTempNow;
 
-  onValue(statref, (snapshot) => {
+ await onValue(statref, (snapshot) => {
     getTempNow = snapshot.val();
   });
 
-  callback(getTempNow);
+  return getTempNow;
 }
 
 export function setDay() {

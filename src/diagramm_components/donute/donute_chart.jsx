@@ -141,14 +141,9 @@ const Donute_chart = ({ trigger }) => {
     })
   }
 
-  function TempGet(){
-    return new Promise((resolve, reject) =>{
-      getTempNow((data)=>{
-        if(data){
-          resolve(data);
-        }else{resolve()}
-      })
-    })
+  async function TempGet(){
+    let data =  await getTempNow()
+    return data
   }
 
   function AirQulitayGet() {
