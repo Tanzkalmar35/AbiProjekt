@@ -25,7 +25,7 @@ const Settings = () => {
             </tr>
             <tr>
               <td className='pt-10 pr-10 text-5xl'>Help</td>
-              <td className='pt-10 text-5xl'><button>Nothing can help you anymore...</button></td>
+              <td className='pt-10 text-5xl'><button>Website to give an overview of the air composition.</button></td>
             </tr>
             <tr>
               <td className='pt-10 pr-10 text-5xl'>AirIndex</td>
