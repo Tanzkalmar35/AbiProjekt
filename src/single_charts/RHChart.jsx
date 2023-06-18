@@ -4,7 +4,7 @@ import { getLastWeek } from '../db'
 export default function RHChart() {
     const [DataLastWeek, setDataLastWeek] = React.useState([50,50,52,50,50])
 
-    setTimeout(async () => { setDataLastWeek(await readLastWeek()) }, 1000)
+    setTimeout(async () => { setDataLastWeek([50,50,52,50,50]) }, 1000)
     const ChartOptions = {
         options: {
             plugins: {

@@ -41,7 +41,7 @@ function Co2LastWeekBar() {
         
         return new Promise((resolve, reject) => {
             getCO2FB((datalast) => {
-                datalast ? resolve(datalast) : reject(new Error)
+                datalast ? resolve(datalast * 1000) : reject(new Error)
             })
         })
     }

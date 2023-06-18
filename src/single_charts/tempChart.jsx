@@ -30,19 +30,11 @@ export default function TempChart() {
             })
         })
     }
-    async function readTempNow() {
-        return new Promise((resolve, reject) => {
-            getSingleData((data1) =>{
-                if(data1){
+    async function  readTempNow() {
+         let data = await getTempLast5Min()
 
-                    resolve(data1)
-                }else{
-                    reject(new Error)
-                }
-            })
-        })
-    }
-
+         return data
+     }
 
 
     const ChartOptions = {

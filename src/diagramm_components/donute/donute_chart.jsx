@@ -21,7 +21,7 @@ const Donute_chart = ({ trigger }) => {
   CO2 = 0.0004
   */
   let CO2 = 0.0004;
-  let O2 = 0.1;
+  let O2 = 0.2;
   let H20 = 0.1;
   let N2 = 0.78;
 

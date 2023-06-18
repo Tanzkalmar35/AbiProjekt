@@ -14,7 +14,7 @@ function Co2_history_chart() {
   const [time, setTime] = useState(get_time);
 
   //This date will be pulled from Firebase
-  const [current_data, setCurrentData] = React.useState([0.004,0.0041,0.0041,0.0042,0.004])
+  const [current_data, setCurrentData] = React.useState([0.4,0.41,0.41,0.42,0.4])
 
   const [options_for_chart, setoptions_for_chart] = useState({
     options: {
@@ -28,7 +28,7 @@ function Co2_history_chart() {
           callbacks: {
             label: (context) => {
               
-              return "CO2 Percentage:" + rounded(context.raw * 1000 ) + "%";
+              return "CO2 Percentage:" + rounded(context.raw  ) + "%";
             },
           },
         },
@@ -65,7 +65,12 @@ function Co2_history_chart() {
       labels: time,
       datasets: [
         {
-          data: [...current_data],
+          data: [
+              current_data[0] * 1000,
+            current_data[1] * 1000 ,
+            current_data[2]  * 1000,
+            current_data[3]  * 1000,
+            current_data[4] * 1000],
           label: "CO2 History chart",
           borderColor: "#0000ff",
           borderWidth: 3,
