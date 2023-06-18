@@ -34,7 +34,7 @@ export default function RHChart() {
                 data: DataLastWeek,
                 backgroundColor: "#0211D6",
                 borderWidth: 4,
-                label: "RH in the last 5 Minutes"
+                label: "RH in the last 5 minutes"
 
 
             },
