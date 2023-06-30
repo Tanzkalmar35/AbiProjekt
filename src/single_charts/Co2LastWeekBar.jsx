@@ -18,7 +18,7 @@ function Co2LastWeekBar() {
                 tooltip: {
                     callbacks: {
                         label: (context) => {
-                           return rounded(context.raw * 1000) + "%"
+                           return rounded(context.raw) + "%"
 
 
                         },
